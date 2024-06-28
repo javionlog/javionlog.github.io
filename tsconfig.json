@@ -1,0 +1,66 @@
+// https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
+{
+  "compilerOptions": {
+    // 允许编译 javascript 文件
+    "allowJs": false,
+    // 代码生成的目录
+    "outDir": "dist",
+    // 生成的目标代码版本(es3, es5, es6, esnext)
+    "target": "esnext",
+    // 生成的模块规范(commonjs, amd, umd, system, es6, esnext, none)
+    "module": "esnext",
+    // 严格模式
+    "strict": true,
+    // 在表达式和声明上有隐含的 any 类型时报错
+    "noImplicitAny": true,
+    // 禁止对同一个文件的不一致的引用
+    "forceConsistentCasingInFileNames": true,
+    // 在 .tsx 文件里支持 jsx(preserve, react, react-native)
+    "jsx": "preserve",
+    // 从 tslib 导入辅助工具函数(比如 __extends， __rest等)
+    "importHelpers": true,
+    // 模块解析
+    "moduleResolution": "node",
+    // 忽略所有的声明文件(*.d.ts)的类型检查
+    "skipLibCheck": true,
+    // 兼容 import cjs from 'cjs'，语法
+    "esModuleInterop": true,
+    // 允许从没有设置默认导出的模块中默认导入
+    "allowSyntheticDefaultImports": true,
+    // 解析 json 模块
+    "resolveJsonModule": true,
+    // 严格比较函数的类型，指的是参数类型，不包含返回值类型
+    "strictFunctionTypes": true,
+    // 若有未使用的局部变量则抛错
+    "noUnusedLocals": true,
+    // 若有未使用的参数则抛错
+    "noUnusedParameters": true,
+    // 启用实验性的ES装饰器
+    "experimentalDecorators": true,
+    // 生成相应的 .map 文件
+    "sourceMap": true,
+    // 解析非相对模块名的基准目录
+    "baseUrl": ".",
+    // 删除所有注释
+    "removeComments": true,
+    // 要包含的类型声明文件名列表，不设置则包含 typeRoots 所有
+    "types": [],
+    // 要包含的类型声明文件路径列表
+    "typeRoots": [],
+    // 模块名到基于 baseUrl 的路径映射的列表
+    "paths": {
+      "@/*": ["docs/.vitepress/*"]
+    },
+    // 编译过程中需要引入的库文件的列表
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+  },
+  // 需要编译的文件
+  "include": [
+    "types/*.d.ts",
+    "docs/.vitepress/**/*.ts",
+    "docs/.vitepress/**/*.tsx",
+    "docs/.vitepress/**/*.vue"
+  ],
+  // 不需要编译的文件
+  "exclude": ["node_modules", "dist"]
+}

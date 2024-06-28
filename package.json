@@ -1,17 +1,25 @@
 {
-  "name": "blog",
+  "name": "practical-blog",
   "version": "1.0.0",
-  "description": "",
+  "description": "A practical blog",
   "main": "index.js",
   "scripts": {
     "dev": "vitepress dev docs",
     "build": "vitepress build docs",
     "preview": "vitepress preview docs"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["practical", "blog"],
+  "author": "Fourdusk",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^20.14.9",
+    "@vitejs/plugin-vue-jsx": "^4.0.0",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "sass": "^1.77.6",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.5.2",
+    "vite": "^5.3.2",
     "vitepress": "^1.2.3"
   },
   "dependencies": {

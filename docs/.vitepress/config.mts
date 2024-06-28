@@ -1,11 +1,24 @@
 import { defineConfig } from 'vitepress'
+import { resolve } from 'path'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 
-// https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "四夕的博客",
-  description: "一个实用的博客",
+  lang: 'zh-CN',
+  lastUpdated: true,
+  title: '四夕的博客',
+  description: '一个实用的博客',
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
+    lastUpdated: {
+      text: '最近更新时间'
+    },
+    docFooter: {
+      prev: '上一篇',
+      next: '下一篇'
+    },
+    footer: {
+      message: '@2024 by Fourdusk',
+      copyright: 'Power by vitepress'
+    },
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Examples', link: '/markdown-examples' }
@@ -21,8 +34,14 @@ export default defineConfig({
       }
     ],
 
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
-    ]
+    socialLinks: [{ icon: 'github', link: 'https://github.com/vuejs/vitepress' }]
+  },
+  vite: {
+    resolve: {
+      alias: {
+        '@': resolve(__dirname, './')
+      }
+    },
+    plugins: [vueJsx()]
   }
 })
