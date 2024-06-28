@@ -2,7 +2,7 @@
 {
   "compilerOptions": {
     // 允许编译 javascript 文件
-    "allowJs": false,
+    "allowJs": true,
     // 代码生成的目录
     "outDir": "dist",
     // 生成的目标代码版本(es3, es5, es6, esnext)
@@ -21,6 +21,8 @@
     "importHelpers": true,
     // 模块解析
     "moduleResolution": "node",
+    // 模块隔离
+    "isolatedModules": true,
     // 忽略所有的声明文件(*.d.ts)的类型检查
     "skipLibCheck": true,
     // 兼容 import cjs from 'cjs'，语法
@@ -59,7 +61,9 @@
     "types/*.d.ts",
     "docs/.vitepress/**/*.ts",
     "docs/.vitepress/**/*.tsx",
-    "docs/.vitepress/**/*.vue"
+    "docs/.vitepress/**/*.vue",
+    "docs/.vitepress/config/index.ts",
+    "docs/.vitepress/config/build.ts"
   ],
   // 不需要编译的文件
   "exclude": ["node_modules", "dist"]

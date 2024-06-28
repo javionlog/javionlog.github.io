@@ -1,13 +1,10 @@
 import { defineConfig } from 'vitepress'
-import { resolve } from 'path'
-import vueJsx from '@vitejs/plugin-vue-jsx'
 
 export default defineConfig({
-  lang: 'zh-CN',
+  appearance: true,
   lastUpdated: true,
-  title: '四夕的博客',
-  description: '一个实用的博客',
   themeConfig: {
+    logo: '/logo.png',
     lastUpdated: {
       text: '最近更新时间'
     },
@@ -23,7 +20,6 @@ export default defineConfig({
       { text: 'Home', link: '/' },
       { text: 'Examples', link: '/markdown-examples' }
     ],
-
     sidebar: [
       {
         text: 'Examples',
@@ -33,15 +29,6 @@ export default defineConfig({
         ]
       }
     ],
-
     socialLinks: [{ icon: 'github', link: 'https://github.com/vuejs/vitepress' }]
-  },
-  vite: {
-    resolve: {
-      alias: {
-        '@': resolve(__dirname, './')
-      }
-    },
-    plugins: [vueJsx()]
   }
 })

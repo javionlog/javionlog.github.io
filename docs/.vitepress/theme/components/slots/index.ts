@@ -16,15 +16,11 @@ for (const [name, mod] of Object.entries(modules)) {
 
 const includeSlots: string[] = []
 
-const compMapList: CompItem[] = compList
-  .map(item => {
-    return {
-      name: pascalToKebab(item.name.split('/').pop()?.split('.').shift() as string),
-      mod: item.mod
-    }
-  })
-  .filter(item => {
-    return includeSlots.includes(item.name)
-  })
+const compMapList: CompItem[] = compList.map(item => {
+  return {
+    name: pascalToKebab(item.name.split('/').pop()?.split('.').shift() as string),
+    mod: item.mod
+  }
+})
 
 export default compMapList
