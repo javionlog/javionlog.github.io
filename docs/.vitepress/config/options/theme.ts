@@ -1,6 +1,13 @@
-import { defineConfig } from 'vitepress'
+import { defineConfigWithTheme, DefaultTheme } from 'vitepress'
+import { getNavData } from '../../utils/theme'
+console.log('🚀 ~ getNavData2:', getNavData())
 
-export default defineConfig({
+export default defineConfigWithTheme<
+  | DefaultTheme.Config
+  | {
+      nav: Array<Record<PropertyKey, unknown>>
+    }
+>({
   appearance: true,
   lastUpdated: true,
   themeConfig: {
@@ -16,10 +23,7 @@ export default defineConfig({
       message: '@2024 by Fourdusk',
       copyright: 'Power by vitepress'
     },
-    nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
-    ],
+    nav: getNavData(),
     sidebar: [
       {
         text: 'Examples',

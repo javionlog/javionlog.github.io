@@ -19,6 +19,9 @@ devDependencies:
   autoprefixer:
     specifier: ^10.4.19
     version: 10.4.19(postcss@8.4.38)
+  fast-glob:
+    specifier: ^3.3.2
+    version: 3.3.2
   postcss:
     specifier: ^8.4.38
     version: 8.4.38

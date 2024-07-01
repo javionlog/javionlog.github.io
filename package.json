@@ -9,13 +9,17 @@
     "build": "vitepress build docs",
     "preview": "vitepress preview docs"
   },
-  "keywords": ["practical", "blog"],
+  "keywords": [
+    "practical",
+    "blog"
+  ],
   "author": "Fourdusk",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.14.9",
     "@vitejs/plugin-vue-jsx": "^4.0.0",
     "autoprefixer": "^10.4.19",
+    "fast-glob": "^3.3.2",
     "postcss": "^8.4.38",
     "sass": "^1.77.6",
     "tailwindcss": "^3.4.4",

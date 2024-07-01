@@ -6,7 +6,7 @@ export default defineConfig({
   vite: {
     resolve: {
       alias: {
-        '@': resolve(__dirname, '../')
+        '@': resolve(process.cwd(), 'docs/.vitepress')
       }
     },
     plugins: [vueJsx()]

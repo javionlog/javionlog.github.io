@@ -1,5 +1,5 @@
 import type { Component } from 'vue'
-import { pascalToKebab } from '@/theme/utils/index'
+import { pascalToKebab } from '@/utils/index'
 
 interface CompItem {
   name: string
@@ -16,11 +16,13 @@ for (const [name, mod] of Object.entries(modules)) {
 
 const includeSlots: string[] = []
 
-const compMapList: CompItem[] = compList.map(item => {
-  return {
-    name: pascalToKebab(item.name.split('/').pop()?.split('.').shift() as string),
-    mod: item.mod
-  }
-})
+const compMapList: CompItem[] = compList
+  .map(item => {
+    return {
+      name: pascalToKebab(item.name.split('/').pop()?.split('.').shift() as string),
+      mod: item.mod
+    }
+  })
+  .filter(o => includeSlots.includes(o.name))
 
 export default compMapList

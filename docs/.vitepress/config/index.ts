@@ -1,11 +1,14 @@
-import build from './build'
-import markdown from './markdown'
-import meta from './meta'
-import router from './router'
-import theme from './theme'
-import vite from './vite'
-import vue from './vue'
+import fg from 'fast-glob'
+import { UserConfig } from 'vitepress'
+import { DefaultTheme } from 'vitepress/theme'
 
-const mergeConfig = Object.assign({}, build, markdown, meta, router, theme, vite, vue)
+const files = fg.sync('./*.ts', { cwd: 'docs/.vitepress/config/options' })
 
-export default mergeConfig
+const config: UserConfig<DefaultTheme.Config> = {}
+
+for (const f of files) {
+  const mod = await import(`./options/${f}`).then(m => m.default)
+  Object.assign(config, mod)
+}
+
+export default config

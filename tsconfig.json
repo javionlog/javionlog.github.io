@@ -61,9 +61,7 @@
     "types/*.d.ts",
     "docs/.vitepress/**/*.ts",
     "docs/.vitepress/**/*.tsx",
-    "docs/.vitepress/**/*.vue",
-    "docs/.vitepress/config/index.ts",
-    "docs/.vitepress/config/build.ts"
+    "docs/.vitepress/**/*.vue"
   ],
   // 不需要编译的文件
   "exclude": ["node_modules", "dist"]
