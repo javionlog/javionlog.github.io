@@ -2,18 +2,17 @@ import { defineConfigWithTheme, DefaultTheme } from 'vitepress'
 import { getNavData } from '../../utils/theme'
 import { getSidebarData } from '../../utils/theme'
 
-export default defineConfigWithTheme<
-  | DefaultTheme.Config
-  | {
-      nav: Array<Record<PropertyKey, unknown>>
-    }
->({
+export default defineConfigWithTheme<DefaultTheme.Config>({
   appearance: true,
   lastUpdated: true,
   themeConfig: {
     logo: '/logo.png',
     lastUpdated: {
-      text: '最近更新时间'
+      text: '最近更新时间',
+      formatOptions: {
+        dateStyle: 'full',
+        timeStyle: 'medium'
+      }
     },
     docFooter: {
       prev: '上一篇',

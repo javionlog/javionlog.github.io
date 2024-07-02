@@ -9,3 +9,7 @@ export const commom: Record<string, string> = {
   advance: '进阶',
   'event-loop': '事件循环'
 }
+
+export const nav: Record<string, string> = {
+  // 'frontend/javascript/advance/event-loop': '事件循环111111111'
+}

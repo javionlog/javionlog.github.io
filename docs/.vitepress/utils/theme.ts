@@ -1,7 +1,7 @@
 import type { DefaultTheme } from 'vitepress'
 import fg from 'fast-glob'
 import { listToTree } from './index'
-import { commom } from '../lang'
+import { commom, nav } from '../lang'
 
 type NavItem = DefaultTheme.NavItem & {
   id: string
@@ -12,12 +12,29 @@ type NavItem = DefaultTheme.NavItem & {
   [k: string]: any
 }
 
-const files = fg.sync('**/!(index.md)', {
-  onlyFiles: false,
-  cwd: 'docs',
-  ignore: ['.vitepress', 'public']
-})
+/**
+ * 获取所有文件的路径
+ * @returns {Array}
+ */
+const getFilePaths = fg
+  .sync('**/!(index.md)', {
+    onlyFiles: false,
+    cwd: 'docs/src',
+    ignore: ['.vitepress', 'public']
+  })
+  .filter(fileName => {
+    return !fileName.endsWith('.ts')
+  })
 
+/**
+ * 过滤树形结构数组属性
+ * @param {Array} tree
+ * @param {Array} props
+ * @param {number} maxLevel
+ * @param {string} childrenKey
+ * @param {string} linkKey
+ * @returns {Array}
+ */
 const pickTreeProps = (
   tree: Array<NavItem>,
   props: string[],
@@ -42,18 +59,24 @@ const pickTreeProps = (
   return tree
 }
 
+/**
+ * 获取导航栏数据
+ * @param {number} maxLevel
+ * @returns {Array}
+ */
 export const getNavData = (maxLevel = 2) => {
-  const tmpList = files.map(fileName => {
+  const tmpList = getFilePaths.map(fileName => {
     const splitList = fileName.split('/')
     const last = splitList[splitList.length - 1]
     const text = last.replace('.md', '')
+    const finalText = nav[fileName.replace('.md', '')] ?? commom[text]
     const item: NavItem = {
       id: last,
       parentId: splitList.length === 1 ? null : splitList[splitList.length - 2],
       level: splitList.length,
       link: `/${fileName}`,
       activeMatch: `/${fileName}`,
-      text: commom[text] ?? text,
+      text: finalText ?? text,
       collapsed: false,
       items: []
     }
@@ -64,14 +87,23 @@ export const getNavData = (maxLevel = 2) => {
     childrenId: 'id',
     childrenKey: 'items'
   }
-  const result = pickTreeProps(
-    listToTree(tmpList, toTreeProps),
-    ['text', 'link', 'level', 'activeMatch', 'collapsed', toTreeProps.childrenKey],
-    maxLevel
-  )
+  const includeProps = [
+    'text',
+    'link',
+    'level',
+    'activeMatch',
+    'collapsed',
+    toTreeProps.childrenKey
+  ]
+  const result = pickTreeProps(listToTree(tmpList, toTreeProps), includeProps, maxLevel)
   return result
 }
 
+/**
+ * 获取侧边栏数据
+ * @param {number} maxLevel
+ * @returns {Object}
+ */
 export const getSidebarData = (maxLevel = 4) => {
   const tmpList = getNavData(maxLevel)
   const result: {
@@ -84,3 +116,5 @@ export const getSidebarData = (maxLevel = 4) => {
   }
   return result
 }
+
+export const getAllData = () => {}

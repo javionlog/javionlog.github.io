@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress'
-import { resolve } from 'path'
+import { resolve } from 'node:path'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 
 export default defineConfig({
