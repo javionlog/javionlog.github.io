@@ -1,7 +1,9 @@
 ---
 layout: home
 ---
-{{ theme.nav }}
+
+{{ theme.sidebar }}
+
 <script setup>
 import { useData } from 'vitepress'
 

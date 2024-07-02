@@ -1,6 +1,6 @@
 import { defineConfigWithTheme, DefaultTheme } from 'vitepress'
 import { getNavData } from '../../utils/theme'
-console.log('🚀 ~ getNavData2:', getNavData())
+import { getSidebarData } from '../../utils/theme'
 
 export default defineConfigWithTheme<
   | DefaultTheme.Config
@@ -24,15 +24,7 @@ export default defineConfigWithTheme<
       copyright: 'Power by vitepress'
     },
     nav: getNavData(),
-    sidebar: [
-      {
-        text: 'Examples',
-        items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
-        ]
-      }
-    ],
+    sidebar: getSidebarData(),
     socialLinks: [{ icon: 'github', link: 'https://github.com/vuejs/vitepress' }]
   }
 })

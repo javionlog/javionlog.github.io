@@ -1,10 +1,8 @@
-type treeKey = number | string
-
 export const pascalToKebab = (str: string) => {
   return str.replace(/[A-Z]/g, (match, offset) => (offset > 0 ? '-' : '') + match.toLowerCase())
 }
 
-export const treeToList = <T extends Record<PropertyKey, unknown>>(
+export const treeToList = <T extends Record<PropertyKey, any>>(
   tree: T[] = [],
   props = { childrenKey: 'children', isDepthFirst: true }
 ) => {
@@ -28,41 +26,32 @@ export const treeToList = <T extends Record<PropertyKey, unknown>>(
   return result
 }
 
-export const listToTree = <
-  T extends {
-    [key: treeKey]: unknown
-  }
->(
+export const listToTree = <T extends Record<PropertyKey, any>>(
   list: T[] = [],
   props = { parentId: 'parentId', childrenId: 'id', childrenKey: 'children' }
 ) => {
   const { parentId, childrenId, childrenKey } = props
-  const result = [] as (
-    | T
-    | {
-        [K in typeof childrenKey]: T
-      }
-  )[]
+  const result: T[] = []
   const pIdMap: {
-    [key: treeKey]: T
+    [k: PropertyKey]: T
   } = {}
 
   for (const item of list) {
-    pIdMap[item[childrenId] as treeKey] = item
+    pIdMap[item[childrenId]] = item
   }
 
   for (const item of list) {
     if (item[parentId]) {
-      const mapIem = pIdMap[item[parentId] as treeKey] as {
-        [key: treeKey]: T[]
+      const mapIem = pIdMap[item[parentId]] as {
+        [k: PropertyKey]: T[]
       }
       if (Array.isArray(mapIem[childrenKey])) {
-        mapIem[childrenKey].push(pIdMap[item[childrenId] as treeKey])
+        mapIem[childrenKey].push(pIdMap[item[childrenId] as PropertyKey])
       } else {
-        mapIem[childrenKey] = [pIdMap[item[childrenId] as treeKey]]
+        mapIem[childrenKey] = [pIdMap[item[childrenId] as PropertyKey]]
       }
     } else {
-      result.push(pIdMap[item[childrenId] as treeKey])
+      result.push(pIdMap[item[childrenId] as PropertyKey])
     }
   }
 

@@ -1,5 +1,16 @@
+import type { DefaultTheme } from 'vitepress'
 import fg from 'fast-glob'
 import { listToTree } from './index'
+import { commom } from '../lang'
+
+type NavItem = DefaultTheme.NavItem & {
+  id: string
+  parentId: string | null
+  level: number
+  activeMatch: string
+  items: NavItem[]
+  [k: string]: any
+}
 
 const files = fg.sync('**/!(index.md)', {
   onlyFiles: false,
@@ -7,15 +18,8 @@ const files = fg.sync('**/!(index.md)', {
   ignore: ['.vitepress', 'public']
 })
 
-const textMap: Record<string, string> = {
-  frontend: '前端',
-  computer: '计算机',
-  algorithm: '算法',
-  'data-structure': '数据结构'
-}
-
 const pickTreeProps = (
-  tree: any[],
+  tree: Array<NavItem>,
   props: string[],
   maxLevel = 2,
   childrenKey = 'items',
@@ -43,13 +47,14 @@ export const getNavData = (maxLevel = 2) => {
     const splitList = fileName.split('/')
     const last = splitList[splitList.length - 1]
     const text = last.replace('.md', '')
-    const item = {
+    const item: NavItem = {
       id: last,
       parentId: splitList.length === 1 ? null : splitList[splitList.length - 2],
       level: splitList.length,
       link: `/${fileName}`,
       activeMatch: `/${fileName}`,
-      text: textMap[text] ?? text,
+      text: commom[text] ?? text,
+      collapsed: false,
       items: []
     }
     return item
@@ -61,8 +66,21 @@ export const getNavData = (maxLevel = 2) => {
   }
   const result = pickTreeProps(
     listToTree(tmpList, toTreeProps),
-    ['text', 'link', 'level', 'activeMatch', toTreeProps.childrenKey],
+    ['text', 'link', 'level', 'activeMatch', 'collapsed', toTreeProps.childrenKey],
     maxLevel
   )
+  return result
+}
+
+export const getSidebarData = (maxLevel = 4) => {
+  const tmpList = getNavData(maxLevel)
+  const result: {
+    [k: string]: NavItem[]
+  } = {}
+  for (const item of tmpList) {
+    for (const subItem of item.items) {
+      result[subItem.activeMatch] = subItem.items
+    }
+  }
   return result
 }
