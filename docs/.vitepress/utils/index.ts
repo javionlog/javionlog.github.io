@@ -74,3 +74,20 @@ export const listToTree = <T extends Record<PropertyKey, any>>(
 
   return result
 }
+
+export const parseTime = (time: Date | string | number, format = '{y}年{m}月{d}日 {h}:{i}:{s}') => {
+  const date = new Date(time)
+  const result = format.replace(/{([ymdhis]){1}}/g, (_, k) => {
+    const formatMap: Record<string, number> = {
+      y: date.getFullYear(),
+      m: date.getMonth() + 1,
+      d: date.getDate(),
+      h: date.getHours(),
+      i: date.getMinutes(),
+      s: date.getSeconds()
+    }
+    const str = formatMap[k]
+    return str.toString().padStart(2, '0')
+  })
+  return result
+}
