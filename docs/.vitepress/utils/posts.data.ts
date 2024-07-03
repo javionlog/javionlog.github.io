@@ -29,7 +29,6 @@ let data: ContentReturnData[]
 export { data }
 
 export default createContentLoader('**/*.md', {
-  excerpt: true,
   transform(raw: ContentData[]) {
     const { author }: PackageJson = JSON.parse(readFileSync('package.json', 'utf8'))
     return raw

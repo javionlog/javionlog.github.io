@@ -1,0 +1,29 @@
+.vp-doc ul, .vp-doc ol {
+  margin: 0;
+  padding: 0;
+}
+
+.vp-doc li + li {
+  margin: 0;
+}
+
+.vp-doc p, .vp-doc summary {
+  margin: 0;
+  padding: 0;
+}
+
+.vp-doc p {
+  line-height: 24px;
+}
+
+.vp-doc a {
+  font-weight: initial;
+  color: initial;
+  text-decoration: initial;
+  text-underline-offset: initial;
+  transition: initial;
+
+  &:hover {
+    color: initial;
+  }
+}
