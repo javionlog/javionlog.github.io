@@ -10,7 +10,7 @@ export default defineConfigWithTheme<DefaultTheme.Config>({
     lastUpdated: {
       text: '最近更新时间',
       formatOptions: {
-        dateStyle: 'medium',
+        dateStyle: 'short',
         timeStyle: 'medium'
       }
     },

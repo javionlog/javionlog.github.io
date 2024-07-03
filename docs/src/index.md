@@ -2,11 +2,8 @@
 layout: home
 ---
 
-{{ data }}
+<Posts />
 
 <script setup lang="ts">
-import { useData } from 'vitepress'
-import { data } from './posts.data'
-
-const { theme } = useData()
+import Posts from '../.vitepress/theme/components/common/posts/index.vue'
 </script>

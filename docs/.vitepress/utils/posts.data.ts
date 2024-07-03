@@ -1,6 +1,16 @@
 import { createContentLoader, ContentData } from 'vitepress'
 import { execSync } from 'node:child_process'
-import { parseTime } from '../.vitepress/utils'
+import { readFileSync } from 'node:fs'
+import { parseTime } from './index'
+
+type PackageJson = {
+  author: string
+}
+
+type ContentReturnData = ContentData & {
+  author: string
+  lastUpdated: string
+}
 
 const getGitCommitTime = (path: string) => {
   try {
@@ -14,12 +24,14 @@ const getGitCommitTime = (path: string) => {
   }
 }
 
-let data: ContentData[]
+let data: ContentReturnData[]
 
 export { data }
 
 export default createContentLoader('**/*.md', {
+  excerpt: true,
   transform(raw: ContentData[]) {
+    const { author }: PackageJson = JSON.parse(readFileSync('package.json', 'utf8'))
     return raw
       .filter(item => {
         return item.url.endsWith('.html')
@@ -27,6 +39,7 @@ export default createContentLoader('**/*.md', {
       .map(item => {
         return {
           ...item,
+          author,
           lastUpdated: getGitCommitTime(item.url)
         }
       })

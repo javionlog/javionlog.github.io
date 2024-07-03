@@ -11,5 +11,5 @@ export const commom: Record<string, string> = {
 }
 
 export const nav: Record<string, string> = {
-  // 'frontend/javascript/advance/event-loop': '事件循环111111111'
+  'frontend/javascript/base/inheritance-and-the-prototype-chain': '继承与原形链'
 }
