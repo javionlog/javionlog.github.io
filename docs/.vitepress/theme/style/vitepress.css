@@ -12,18 +12,14 @@
   padding: 0;
 }
 
-.vp-doc p {
-  line-height: 24px;
-}
-
 .vp-doc a {
   font-weight: initial;
   color: initial;
   text-decoration: initial;
   text-underline-offset: initial;
   transition: initial;
-
-  &:hover {
-    color: initial;
-  }
+}
+ 
+.vp-doc a:hover {
+  color: initial;
 }
