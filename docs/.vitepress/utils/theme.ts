@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs'
 import type { DefaultTheme } from 'vitepress'
 import fg from 'fast-glob'
 import { listToTree } from './index'
@@ -10,6 +11,10 @@ type NavItem = DefaultTheme.NavItem & {
   activeMatch: string
   items: NavItem[]
   [k: string]: any
+}
+
+type PackageJson = {
+  author: string
 }
 
 /**
@@ -117,4 +122,12 @@ export const getSidebarData = (maxLevel = 4) => {
   return result
 }
 
-export const getAllData = () => {}
+/**
+ * 获取 package.json 内容
+ * @returns {Object}
+ */
+export const getPackageJson = (): PackageJson => {
+  const pkgJsonPath = 'package.json'
+  const result = JSON.parse(readFileSync(pkgJsonPath, 'utf-8'))
+  return result
+}

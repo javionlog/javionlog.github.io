@@ -1,7 +1,7 @@
 <template>
   <div class="grid grid-cols-1 gap-4">
     <a
-      v-for="ps in posts"
+      v-for="ps in postList"
       :key="ps.url"
       :href="ps.url"
       class="grid gap-3 p-4 rounded cursor-pointer shadow hover:shadow-lg dark:shadow-[--vp-c-default-1] dark:hover:shadow-[--vp-c-default-1]"
@@ -20,15 +20,16 @@
   <Pagination
     v-model:current="currentPage"
     :total="posts.length"
-    :page-size="1"
+    :page-size="pageSize"
+    @change="handlePageChange"
     class="mt-6"
-    @change="handlePage"
   />
 </template>
 
 <script setup lang="ts">
-import { PageInfo } from '../pagination/usePagination'
-import { ref } from 'vue'
+import { useRoute, useRouter } from 'vitepress'
+import { useBrowserLocation, useUrlSearchParams } from '@vueuse/core'
+import { ref, computed, watch } from 'vue'
 import { data as posts } from '../../../../utils/posts.data'
 import Pagination from '../pagination/index.vue'
 
@@ -36,8 +37,35 @@ defineOptions({
   name: 'Posts'
 })
 
+const location = useBrowserLocation()
+const searchParams = useUrlSearchParams()
+const route = useRoute()
+const router = useRouter()
 const currentPage = ref(1)
-const handlePage = (pageInfo: PageInfo) => {
-  console.log('🚀 ~ handlePage ~ pageInfo:', pageInfo)
+const pageSize = ref(2)
+const postList = computed(() => {
+  return posts.slice((currentPage.value - 1) * pageSize.value, currentPage.value * pageSize.value)
+})
+
+const handlePageChange = () => {
+  const toPath = `${location.value.origin}${router.route.path}?page=${currentPage.value}`
+  router.go(toPath)
 }
+
+watch(
+  route,
+  () => {
+    const page = Number(searchParams.page)
+    if (Number.isNaN(page)) {
+      currentPage.value = 1
+    } else {
+      if (page > 0) {
+        currentPage.value = page
+      }
+    }
+  },
+  {
+    immediate: true
+  }
+)
 </script>

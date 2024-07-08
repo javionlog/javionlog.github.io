@@ -1,11 +1,7 @@
 import { createContentLoader, ContentData } from 'vitepress'
 import { execSync } from 'node:child_process'
-import { readFileSync } from 'node:fs'
 import { parseTime } from './index'
-
-type PackageJson = {
-  author: string
-}
+import { getPackageJson } from './theme'
 
 type ContentReturnData = ContentData & {
   author: string
@@ -30,7 +26,7 @@ export { data }
 
 export default createContentLoader('**/*.md', {
   transform(raw: ContentData[]) {
-    const { author }: PackageJson = JSON.parse(readFileSync('package.json', 'utf8'))
+    const { author } = getPackageJson()
     return raw
       .filter(item => {
         return item.url.endsWith('.html')

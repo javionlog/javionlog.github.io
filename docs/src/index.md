@@ -2,8 +2,8 @@
 layout: home
 ---
 
-<Posts />
+<Home />
 
 <script setup lang="ts">
-import Posts from '../.vitepress/theme/components/common/posts/index.vue'
+import Home from '../.vitepress/theme/components/common/home/index.vue'
 </script>

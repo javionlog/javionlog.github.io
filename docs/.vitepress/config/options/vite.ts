@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress'
 import { resolve } from 'node:path'
 import vueJsx from '@vitejs/plugin-vue-jsx'
+import { pagefindPlugin, chineseSearchOptimize } from 'vitepress-plugin-pagefind'
 import Icons from 'unplugin-icons/vite'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import IconsResolver from 'unplugin-icons/resolver'
@@ -30,6 +31,10 @@ export default defineConfig({
             customCollections: ['vpi']
           })
         ]
+      }),
+      pagefindPlugin({
+        customSearchQuery: chineseSearchOptimize,
+        showDate: true
       })
     ]
   }

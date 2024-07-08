@@ -102,8 +102,10 @@ export const usePagination = (props: Props, current: Ref<number>, emit: Emit) =>
   })
 
   const goPage = (page: number) => {
-    current.value = page
-    emit('change', { current: current.value, pageSize: props.pageSize })
+    if (page !== current.value) {
+      current.value = page
+      emit('change', { current: current.value, pageSize: props.pageSize })
+    }
   }
 
   const goPrev = () => {
@@ -121,6 +123,7 @@ export const usePagination = (props: Props, current: Ref<number>, emit: Emit) =>
   }
 
   return {
+    currentPage: current,
     totalPage,
     flodPages,
     prevBtnDisabled,
