@@ -1,13 +1,13 @@
-import { defineConfig } from 'eslint-define-config'
+const { defineConfig } = require('eslint-define-config')
 
 const config = defineConfig({
   root: true,
   env: {
     browser: true,
-    es6: true,
+    es2023: true,
     node: true
   },
-  plugins: ['@typescript-eslint'],
+  plugins: [],
   extends: [
     'eslint:all',
     'plugin:@typescript-eslint/recommended',
@@ -24,9 +24,11 @@ const config = defineConfig({
     }
   },
   rules: {
-    complexity: ['error', 10],
-    yoda: 'off'
+    yoda: 'off',
+    'sort-keys': 'off',
+    '@typescript-eslint/no-explicit-any': 'warn',
+    complexity: ['error', 10]
   }
 })
 
-export default config
+module.exports = config

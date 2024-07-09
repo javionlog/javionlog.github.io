@@ -5,22 +5,22 @@ const config = {
   useTabs: false,
   semi: false,
   singleQuote: true,
-  quoteProps: "as-needed",
+  quoteProps: 'as-needed',
   jsxSingleQuote: false,
-  trailingComma: "none",
+  trailingComma: 'none',
   bracketSameLine: false,
   bracketSpacing: true,
-  arrowParens: "avoid",
+  arrowParens: 'avoid',
   rangeStart: 0,
   rangeEnd: Infinity,
   requirePragma: false,
   insertPragma: false,
-  proseWrap: "preserve",
-  htmlWhitespaceSensitivity: "css",
+  proseWrap: 'preserve',
+  htmlWhitespaceSensitivity: 'css',
   vueIndentScriptAndStyle: false,
-  endOfLine: "lf",
-  embeddedLanguageFormatting: "auto",
-  singleAttributePerLine: false,
-};
+  endOfLine: 'lf',
+  embeddedLanguageFormatting: 'auto',
+  singleAttributePerLine: false
+}
 
-export default config;
+export default config

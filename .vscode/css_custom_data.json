@@ -1,0 +1,21 @@
+{
+  "version": 1.1,
+  "atDirectives": [
+    {
+      "name": "@tailwind",
+      "description": "Use the @tailwind directive to insert Tailwind's `base`, `components`, `utilities`, and `screens` styles into your CSS."
+    },
+    {
+      "name": "@apply",
+      "description": "The @apply directive is used to inline any existing utility classes into your own custom CSS"
+    },
+    {
+      "name": "@layer",
+      "description": "The @layer directive is used to tell Tailwind which “bucket” a set of custom styles belong to."
+    },
+    {
+      "name": "@config",
+      "description": "The @config directive is a new feature that lets you specify which config file Tailwind should use when compiling that CSS file. "
+    }
+  ]
+}
