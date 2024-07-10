@@ -1,7 +1,16 @@
+.hide-nav {
+  --vp-nav-height: 0px;
+}
+
+/* stylelint-disable-next-line */
+.hide-nav .VPSidebar {
+  --vp-nav-height: 22px;
+}
+
 .vp-doc ul,
 .vp-doc ol {
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 
 .vp-doc li + li {
@@ -10,8 +19,8 @@
 
 .vp-doc p,
 .vp-doc summary {
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 
 .vp-doc a {

@@ -1,4 +1,4 @@
+@import 'vars/index.css';
 @import 'vitepress.css';
-@import 'vars.css';
-@import 'reset.css';
 @import 'tailwind.css';
+@import 'reset.css';

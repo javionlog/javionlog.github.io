@@ -1,6 +1,6 @@
 <template>
   <div v-if="totalPage > 1" class="flex justify-center text-xs">
-    <ul class="flex order-1 gap-2">
+    <ul class="order-1 flex gap-2">
       <li :class="getTurnBtnClass('prev')" @click="goPrev">
         <VpiChevronLeft />
       </li>

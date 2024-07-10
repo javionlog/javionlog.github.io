@@ -6,12 +6,12 @@ const config = {
       customSyntax: 'postcss-html'
     },
     {
-      files: ['**/*.{scss,sass}'],
+      files: ['**/*.scss'],
       customSyntax: 'postcss-scss'
     }
   ],
   plugins: [],
-  extends: ['stylelint-config-standard-scss'],
+  extends: ['stylelint-config-standard-scss', 'stylelint-config-recess-order'],
   rules: {
     'scss/at-rule-no-unknown': [
       true,
@@ -22,4 +22,4 @@ const config = {
   }
 }
 
-module.exports = config
+export default config

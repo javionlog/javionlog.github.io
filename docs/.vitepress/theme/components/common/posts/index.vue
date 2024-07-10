@@ -4,7 +4,7 @@
       v-for="ps in postList"
       :key="ps.url"
       :href="ps.url"
-      class="grid gap-3 p-4 rounded cursor-pointer shadow hover:shadow-lg dark:shadow-[--vp-c-default-1] dark:hover:shadow-[--vp-c-default-1]"
+      class="grid cursor-pointer gap-3 rounded p-4 shadow hover:shadow-lg dark:shadow-[--vp-c-default-1] dark:hover:shadow-[--vp-c-default-1]"
     >
       <div class="text-lg font-bold">{{ ps.frontmatter.title }}</div>
       <div class="line-clamp-2 text-sm text-[--vp-c-text-2]">

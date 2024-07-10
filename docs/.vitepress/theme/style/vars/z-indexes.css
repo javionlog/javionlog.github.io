@@ -1,0 +1,14 @@
+:root {
+  --vp-z-index-footer: 10;
+  --vp-z-index-local-nav: 20;
+  --vp-z-index-nav: 30;
+  --vp-z-index-layout-top: 40;
+  --vp-z-index-backdrop: 50;
+  --vp-z-index-sidebar: 60;
+}
+
+@media (width >= 960px) {
+  :root {
+    --vp-z-index-sidebar: 25;
+  }
+}
