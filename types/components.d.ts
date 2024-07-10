@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     VpiChevronLeft: typeof import('~icons/vpi/chevron-left')['default']
     VpiChevronRight: typeof import('~icons/vpi/chevron-right')['default']
+    VpiClose: typeof import('~icons/vpi/close')['default']
     VpiEllipsis: typeof import('~icons/vpi/ellipsis')['default']
   }
 }

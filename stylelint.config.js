@@ -13,6 +13,7 @@ const config = {
   plugins: [],
   extends: ['stylelint-config-standard-scss', 'stylelint-config-recess-order'],
   rules: {
+    'alpha-value-notation': 'number',
     'scss/at-rule-no-unknown': [
       true,
       {

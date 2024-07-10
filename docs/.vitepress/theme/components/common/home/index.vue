@@ -1,15 +1,23 @@
 <template>
-  <div>
+  <div class="home-layout">
     <Posts />
-    <Tag type="brand" content="前端" />
+    <Sidebar />
   </div>
 </template>
 
 <script setup lang="ts">
 import Posts from '../posts/index.vue'
-import Tag from '../tag/index.vue'
+import Sidebar from '../sidebar/index.vue'
 
 defineOptions({
   name: 'Home'
 })
 </script>
+
+<style lang="scss" scoped>
+.home-layout {
+  display: grid;
+  grid-template-columns: 3fr minmax(200px, 1fr);
+  grid-gap: 24px;
+}
+</style>

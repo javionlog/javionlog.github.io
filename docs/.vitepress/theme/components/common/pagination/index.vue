@@ -25,8 +25,8 @@
 </template>
 
 <script setup lang="ts">
-import { usePagination } from './usePagination'
 import type { Props, Emit } from './usePagination'
+import { usePagination } from './usePagination'
 
 defineOptions({
   name: 'Pagination'

@@ -1,29 +1,31 @@
 <template>
-  <div class="grid grid-cols-1 gap-4">
-    <a
-      v-for="ps in postList"
-      :key="ps.url"
-      :href="ps.url"
-      class="grid cursor-pointer gap-3 rounded p-4 shadow hover:shadow-lg dark:shadow-[--vp-c-default-1] dark:hover:shadow-[--vp-c-default-1]"
-    >
-      <div class="text-lg font-bold">{{ ps.frontmatter.title }}</div>
-      <div class="line-clamp-2 text-sm text-[--vp-c-text-2]">
-        {{ ps.frontmatter.description }}
-      </div>
-      <div class="flex gap-1 text-xs text-[--vp-c-text-3]">
-        <span>{{ ps.author }}</span>
-        <span>|</span>
-        <span>{{ ps.lastUpdated }}</span>
-      </div>
-    </a>
+  <div>
+    <div class="grid grid-cols-1 gap-4">
+      <a
+        v-for="ps in postList"
+        :key="ps.url"
+        :href="ps.url"
+        class="grid cursor-pointer gap-3 rounded p-4 shadow hover:shadow-lg dark:shadow-[--vp-c-default-1] dark:hover:shadow-[--vp-c-default-1]"
+      >
+        <div class="text-lg font-bold">{{ ps.frontmatter.title }}</div>
+        <div class="line-clamp-2 text-sm text-[--vp-c-text-2]">
+          {{ ps.frontmatter.description }}
+        </div>
+        <div class="flex gap-1 text-xs text-[--vp-c-text-3]">
+          <span>{{ ps.author }}</span>
+          <span>|</span>
+          <span>{{ ps.lastUpdated }}</span>
+        </div>
+      </a>
+    </div>
+    <Pagination
+      v-model:current="currentPage"
+      :total="posts.length"
+      :page-size="pageSize"
+      @change="handlePageChange"
+      class="mt-6"
+    />
   </div>
-  <Pagination
-    v-model:current="currentPage"
-    :total="posts.length"
-    :page-size="pageSize"
-    @change="handlePageChange"
-    class="mt-6"
-  />
 </template>
 
 <script setup lang="ts">

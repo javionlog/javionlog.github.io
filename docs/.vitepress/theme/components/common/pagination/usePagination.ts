@@ -72,7 +72,14 @@ export const usePagination = (props: Props, current: Ref<number>, emit: Emit) =>
 
   const getPageBtnClass = computed(() => {
     return (page: number) => {
-      const commonClass = ['px-2', 'py-1', 'cursor-pointer', 'rounded-sm']
+      const commonClass = [
+        'flex',
+        'items-center',
+        'px-2',
+        'h-vp-default',
+        'cursor-pointer',
+        'rounded-sm'
+      ]
       let diffClass: string[] = []
       if (current.value === page) {
         diffClass = [

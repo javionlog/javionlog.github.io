@@ -3,7 +3,11 @@ export default {
   darkMode: 'selector',
   content: ['./docs/.vitepress/**/*.{js,ts,vue}', './docs/**/*.md'],
   theme: {
-    extend: {}
+    extend: {
+      height: {
+        'vp-default': '24px'
+      }
+    }
   },
   plugins: []
 }

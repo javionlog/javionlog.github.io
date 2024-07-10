@@ -3,11 +3,12 @@
     <span>
       <slot>{{ props.content }}</slot>
     </span>
+    <VpiClose v-if="props.closable" :class="closeBtnClass" @click="handleClose" />
   </div>
 </template>
 
 <script setup lang="ts">
-import type { Props } from './useTag'
+import type { Props, Emit } from './useTag'
 import { useTag } from './useTag'
 
 defineOptions({
@@ -15,9 +16,11 @@ defineOptions({
 })
 
 const props = withDefaults(defineProps<Props>(), {
-  type: 'defult',
+  theme: 'default',
   closable: false
 })
 
-const { tagClass } = useTag(props)
+const emit = defineEmits<Emit>()
+
+const { tagClass, closeBtnClass, handleClose } = useTag(props, emit)
 </script>
