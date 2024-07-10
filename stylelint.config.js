@@ -1,4 +1,4 @@
-/** @type {require('stylelint/types/stylelint').Config} */
+/** @type {import('stylelint').Config} */
 const config = {
   overrides: [
     {
@@ -10,8 +10,8 @@ const config = {
       customSyntax: 'postcss-scss'
     }
   ],
-  plugins: ['stylelint-order'],
-  extends: ['stylelint-config-standard', 'stylelint-config-standard-scss'],
+  plugins: [],
+  extends: ['stylelint-config-standard-scss'],
   rules: {
     'scss/at-rule-no-unknown': [
       true,
