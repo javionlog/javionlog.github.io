@@ -14,7 +14,7 @@ export type PageInfo = {
 }
 
 export type Emit = {
-  (e: 'change', pageInfo: PageInfo): void
+  change: [pageInfo: PageInfo]
 }
 
 export const usePagination = (props: Props, current: Ref<number>, emit: Emit) => {

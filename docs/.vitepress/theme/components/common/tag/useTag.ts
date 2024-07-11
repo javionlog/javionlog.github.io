@@ -7,7 +7,7 @@ export type Props = {
 }
 
 export type Emit = {
-  (e: 'close', event: MouseEvent): void
+  close: [event: MouseEvent]
 }
 
 export const useTag = (props: Props, emit: Emit) => {
