@@ -6,6 +6,7 @@ import Icons from 'unplugin-icons/vite'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import IconsResolver from 'unplugin-icons/resolver'
 import Components from 'unplugin-vue-components/vite'
+import UnoCSS from 'unocss/vite'
 
 export default defineConfig({
   vite: {
@@ -16,6 +17,7 @@ export default defineConfig({
     },
     plugins: [
       vueJsx(),
+      UnoCSS(),
       Icons({
         scale: 1,
         compiler: 'vue3',

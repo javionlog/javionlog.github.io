@@ -14,7 +14,7 @@ export type PageInfo = {
 }
 
 export type Emit = {
-  change: [pageInfo: PageInfo]
+  (e: 'change', pageInfo: PageInfo): void
 }
 
 export const usePagination = (props: Props, current: Ref<number>, emit: Emit) => {
@@ -84,11 +84,15 @@ export const usePagination = (props: Props, current: Ref<number>, emit: Emit) =>
       if (current.value === page) {
         diffClass = [
           'border-transparent',
-          'text-[--vp-button-brand-text]',
-          'bg-[--vp-button-brand-bg]'
+          'text-[var(--vp-button-brand-text)]',
+          'bg-[var(--vp-button-brand-bg)]'
         ]
       } else {
-        diffClass = ['border', 'border-[--vp-c-border]', 'hover:!text-[--vp-button-brand-hover-bg]']
+        diffClass = [
+          'border',
+          'border-[var(--vp-c-border)]',
+          'hover:!text-[var(--vp-button-brand-hover-bg)]'
+        ]
       }
       return [...commonClass, ...diffClass]
     }
@@ -100,9 +104,9 @@ export const usePagination = (props: Props, current: Ref<number>, emit: Emit) =>
       const commonClass = ['flex', 'items-center', 'cursor-pointer']
       let diffClass: string[] = []
       if (btnDisabled.value) {
-        diffClass = ['cursor-not-allowed', 'text-[--vp-button-sponsor-text]']
+        diffClass = ['cursor-not-allowed', 'text-[var(--vp-button-sponsor-text)]']
       } else {
-        diffClass = ['hover:!text-[--vp-button-brand-hover-bg]']
+        diffClass = ['hover:!text-[var(--vp-button-brand-hover-bg)]']
       }
       return [...commonClass, ...diffClass]
     }

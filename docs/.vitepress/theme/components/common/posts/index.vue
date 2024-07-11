@@ -5,13 +5,13 @@
         v-for="ps in postList"
         :key="ps.url"
         :href="ps.url"
-        class="grid cursor-pointer gap-3 rounded p-4 shadow hover:shadow-lg dark:shadow-[--vp-c-default-1] dark:hover:shadow-[--vp-c-default-1]"
+        class="grid cursor-pointer gap-3 rounded p-4 shadow hover:shadow-lg dark:shadow-[var(--vp-c-default-1)] dark:hover:shadow-[var(--vp-c-default-1)]"
       >
         <div class="text-lg font-bold">{{ ps.frontmatter.title }}</div>
-        <div class="line-clamp-2 text-sm text-[--vp-c-text-2]">
+        <div class="line-clamp-2 text-sm text-[var(--vp-c-text-2)]">
           {{ ps.frontmatter.description }}
         </div>
-        <div class="flex gap-1 text-xs text-[--vp-c-text-3]">
+        <div class="flex gap-1 text-xs text-[var(--vp-c-text-3)]">
           <span>{{ ps.author }}</span>
           <span>|</span>
           <span>{{ ps.lastUpdated }}</span>

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="rounded p-4 shadow hover:shadow-lg dark:shadow-[--vp-c-default-1] dark:hover:shadow-[--vp-c-default-1]"
+    class="rounded p-4 shadow hover:shadow-lg dark:shadow-[var(--vp-c-default-1)] dark:hover:shadow-[var(--vp-c-default-1)]"
   >
     <div class="flex flex-wrap gap-2">
       <Tag

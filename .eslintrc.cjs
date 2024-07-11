@@ -12,6 +12,7 @@ const config = defineConfig({
     'eslint:all',
     'plugin:@typescript-eslint/recommended',
     'plugin:vue/vue3-recommended',
+    '@unocss',
     'prettier'
   ],
   parser: 'vue-eslint-parser',
