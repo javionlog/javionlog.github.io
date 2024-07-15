@@ -1,8 +1,10 @@
 import { readFileSync } from 'node:fs'
-import type { DefaultTheme } from 'vitepress'
+
 import fg from 'fast-glob'
-import { listToTree } from './index'
+import { DefaultTheme } from 'vitepress'
+
 import { commom, nav } from '../lang'
+import { listToTree } from './index'
 
 type NavItem = DefaultTheme.NavItem & {
   id: string
@@ -27,9 +29,7 @@ const getFilePaths = fg
     cwd: 'docs/src',
     ignore: ['.vitepress', 'public']
   })
-  .filter(fileName => {
-    return !fileName.endsWith('.ts')
-  })
+  .filter(fileName => !fileName.endsWith('.ts'))
 
 /**
  * 过滤树形结构数组属性
@@ -41,11 +41,9 @@ const getFilePaths = fg
  * @returns {Array}
  */
 const pickTreeProps = (
-  tree: Array<NavItem>,
+  tree: NavItem[],
   props: string[],
-  maxLevel = 2,
-  childrenKey = 'items',
-  linkKey = 'link'
+  { maxLevel = 2, childrenKey = 'items', linkKey = 'link' }
 ) => {
   for (const item of tree) {
     for (const k of Object.keys(item)) {
@@ -56,9 +54,10 @@ const pickTreeProps = (
     if (item.level >= maxLevel) {
       Reflect.deleteProperty(item, childrenKey)
     }
-    if (item[childrenKey]?.length > 0) {
+    const itemChildren = item[childrenKey] as NavItem[] | undefined
+    if (Array.isArray(itemChildren) && itemChildren.length) {
       Reflect.deleteProperty(item, linkKey)
-      pickTreeProps(item[childrenKey], props, maxLevel, childrenKey)
+      pickTreeProps(itemChildren, props, { maxLevel, childrenKey })
     }
   }
   return tree
@@ -100,7 +99,7 @@ export const getNavData = (maxLevel = 2) => {
     'collapsed',
     toTreeProps.childrenKey
   ]
-  const result = pickTreeProps(listToTree(tmpList, toTreeProps), includeProps, maxLevel)
+  const result = pickTreeProps(listToTree(tmpList, toTreeProps), includeProps, { maxLevel })
   return result
 }
 
@@ -126,8 +125,8 @@ export const getSidebarData = (maxLevel = 4) => {
  * 获取 package.json 内容
  * @returns {Object}
  */
-export const getPackageJson = (): PackageJson => {
+export const getPackageJson = () => {
   const pkgJsonPath = 'package.json'
-  const result = JSON.parse(readFileSync(pkgJsonPath, 'utf-8'))
+  const result = JSON.parse(readFileSync(pkgJsonPath, 'utf-8')) as PackageJson
   return result
 }

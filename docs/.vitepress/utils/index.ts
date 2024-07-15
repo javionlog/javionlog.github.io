@@ -3,9 +3,8 @@
  * @param {string} str
  * @returns {string}
  */
-export const pascalToKebab = (str: string) => {
-  return str.replace(/[A-Z]/g, (match, offset) => (offset > 0 ? '-' : '') + match.toLowerCase())
-}
+export const pascalToKebab = (str: string) =>
+  str.replace(/[A-Z]/gu, (match, offset) => (offset > 0 ? '-' : '') + match.toLowerCase())
 
 /**
  * 树形结构数组扁平化
@@ -24,7 +23,7 @@ export const treeToList = <T extends Record<PropertyKey, any>>(
     const topItem = stack.shift()
     if (topItem) {
       result.push(topItem)
-      const children = topItem[childrenKey]
+      const children = topItem[childrenKey] as T[]
       if (Array.isArray(children)) {
         if (isDepthFirst) {
           stack.unshift(...children)
@@ -54,12 +53,12 @@ export const listToTree = <T extends Record<PropertyKey, any>>(
   } = {}
 
   for (const item of list) {
-    pIdMap[item[childrenId]] = item
+    pIdMap[item[childrenId] as PropertyKey] = item
   }
 
   for (const item of list) {
     if (item[parentId]) {
-      const mapIem = pIdMap[item[parentId]] as {
+      const mapIem = pIdMap[item[parentId] as PropertyKey] as {
         [k: PropertyKey]: T[]
       }
       if (Array.isArray(mapIem[childrenKey])) {
@@ -76,11 +75,8 @@ export const listToTree = <T extends Record<PropertyKey, any>>(
 }
 
 export const parseTime = (time: Date | string | number, format = '{y}/{m}/{d} {h}:{i}:{s}') => {
-  if (time === '' || time === undefined) {
-    return ''
-  }
   const date = new Date(time)
-  const result = format.replace(/{([ymdhis]){1}}/g, (_, k) => {
+  const result = format.replace(/\{(?<flag>[ymdhis])+\}/gu, (_, k: string) => {
     const formatMap: Record<string, number> = {
       y: date.getFullYear(),
       m: date.getMonth() + 1,
@@ -94,3 +90,25 @@ export const parseTime = (time: Date | string | number, format = '{y}/{m}/{d} {h
   })
   return result
 }
+
+export const getUrlSearchObject = () => {
+  const result: Record<string, string> = {}
+  const locationSearch = location.search
+  if (typeof locationSearch !== 'string') {
+    return result
+  }
+  const tmpList = locationSearch.slice(1).split('&')
+  for (const item of tmpList) {
+    const itemList = item.split('=')
+    const [firstItem, secondItem] = itemList
+    if (firstItem) {
+      result[firstItem] = secondItem
+    }
+  }
+  return result
+}
+
+export const getUrlSearchString = (obj: Record<PropertyKey, string | number | undefined>) =>
+  Object.keys(obj)
+    .map(key => `${key}=${String(obj[key])}`)
+    .join('&')

@@ -1,17 +1,25 @@
+import { ThemeColor } from '../../../../theme/types'
+
 export type Props = {
-  theme?: 'default' | 'brand' | 'success' | 'warning' | 'danger'
-  content?: string
+  theme?: ThemeColor
+  content: string
   closable?: boolean
+  variant?: 'base' | 'outline'
 }
+
+export type TagInfo = Props
 
 export type Emit = {
-  (e: 'close', event: MouseEvent): void
+  (e: 'close' | 'check', tagInfo: Props): void
 }
 
-export const useTag = (_: Props, emit: Emit) => {
-  const handleClose = (event: MouseEvent) => {
-    emit('close', event)
-  }
+export const useTag = (props: Props, emit: Emit) => {
+  const handleClose = () => {
+      emit('close', props)
+    },
+    handleCheck = () => {
+      emit('check', props)
+    }
 
-  return { handleClose }
+  return { handleClose, handleCheck }
 }

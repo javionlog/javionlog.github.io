@@ -2,7 +2,7 @@
   <div>Home Hero Info Before</div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 defineOptions({
   name: 'HomeHeroInfoBefore'
 })

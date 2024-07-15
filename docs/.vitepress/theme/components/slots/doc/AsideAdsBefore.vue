@@ -2,7 +2,7 @@
   <div>Aside Ads Before</div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 defineOptions({
   name: 'AsideAdsBefore'
 })

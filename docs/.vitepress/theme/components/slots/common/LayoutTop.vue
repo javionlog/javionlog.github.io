@@ -2,7 +2,7 @@
   <div>Layout Top</div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 defineOptions({
   name: 'LayoutTop'
 })

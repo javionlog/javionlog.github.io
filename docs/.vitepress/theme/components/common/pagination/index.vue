@@ -1,36 +1,37 @@
 <template>
   <div v-if="totalPage > 1" class="flex justify-center text-xs">
-    <ul class="order-1 flex gap-2">
-      <li :class="getTurnBtnClass('prev')" @click="goPrev">
-        <VpiChevronLeft />
-      </li>
+    <div class="order-1 flex gap-2">
+      <TurnButton :current="innerCurrent" :total-page="totalPage" type="prev" @go-page="goPage" />
       <template v-if="prevEllipsisVisible">
-        <li :class="getPageBtnClass(1)" @click="goPage(1)">1</li>
-        <li class="flex items-center"><VpiEllipsis /></li>
+        <PageButton :page="1" :current="innerCurrent" @go-page="goPage" />
+        <div class="flex items-center"><VpiEllipsis /></div>
       </template>
-      <li v-for="num in flodPages" :key="num" :class="getPageBtnClass(num)" @click="goPage(num)">
-        {{ num }}
-      </li>
+      <PageButton
+        v-for="num in flodPages"
+        :key="num"
+        :page="num"
+        :current="innerCurrent"
+        @go-page="goPage"
+      />
       <template v-if="nextEllipsisVisible">
-        <li class="flex items-center"><VpiEllipsis /></li>
-        <li :class="getPageBtnClass(totalPage)" @click="goPage(totalPage)">
-          {{ totalPage }}
-        </li>
+        <div class="flex items-center"><VpiEllipsis /></div>
+        <PageButton :page="totalPage" :current="innerCurrent" @go-page="goPage" />
       </template>
-      <li :class="getTurnBtnClass('next')" @click="goNext">
-        <VpiChevronRight />
-      </li>
-    </ul>
+      <TurnButton :current="innerCurrent" :total-page="totalPage" type="next" @go-page="goPage" />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { Props, Emit } from './usePagination'
-import { usePagination } from './usePagination'
+import PageButton from './PageButton.vue'
+import TurnButton from './TurnButton.vue'
+import { Emit, Props, usePagination } from './usePagination'
 
 defineOptions({
   name: 'Pagination'
 })
+
+const innerCurrent = defineModel<number>('current', { required: true })
 
 const props = defineProps({
   total: {
@@ -44,32 +45,28 @@ const props = defineProps({
   maxPage: {
     type: Number,
     default: 10,
-    validator(value: number, props: Props) {
-      return value > 7 && props.maxFlodPage < value - 4
+    validator(value: number, _props: Props) {
+      const min = 7
+      const offset = 4
+      return value > min && _props.maxFlodPage < value - offset
     }
   },
   maxFlodPage: {
     type: Number,
     default: 5,
-    validator(value: number, props: Props) {
-      return value % 2 === 1 && value > 2 && value < props.maxPage - 4
+    validator(value: number, _props: Props) {
+      const min = 2
+      const offset = 4
+      return value % 2 === 1 && value > min && value < _props.maxPage - offset
     }
   }
 })
 
-const innerCurrent = defineModel<number>('current', { required: true })
-
 const emit = defineEmits<Emit>()
 
-const {
-  totalPage,
-  flodPages,
-  prevEllipsisVisible,
-  nextEllipsisVisible,
-  getPageBtnClass,
-  getTurnBtnClass,
-  goPage,
-  goPrev,
-  goNext
-} = usePagination(props, innerCurrent, emit)
+const { totalPage, flodPages, prevEllipsisVisible, nextEllipsisVisible, goPage } = usePagination(
+  props,
+  innerCurrent,
+  emit
+)
 </script>

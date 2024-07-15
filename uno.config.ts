@@ -26,5 +26,5 @@ export default defineConfig({
       'placeholder-2': 'var(--vp-c-placeholder-2)'
     }
   },
-  safelist: themeColors.map(val => [`bg-${val}`, `text-${val}`]).flat()
+  safelist: themeColors.map(val => [`bg-${val}`, `text-${val}`, `border-${val}`]).flat()
 })

@@ -1,4 +1,5 @@
-import type { Component } from 'vue'
+import { Component } from 'vue'
+
 import { pascalToKebab } from '@/utils/index'
 
 interface CompItem {
@@ -17,12 +18,10 @@ for (const [name, mod] of Object.entries(modules)) {
 const includeSlots: string[] = []
 
 const compMapList: CompItem[] = compList
-  .map(item => {
-    return {
-      name: pascalToKebab(item.name.split('/').pop()?.split('.').shift() as string),
-      mod: item.mod
-    }
-  })
+  .map(item => ({
+    name: pascalToKebab(item.name.split('/').pop()?.split('.').shift() as string),
+    mod: item.mod
+  }))
   .filter(o => includeSlots.includes(o.name))
 
 export default compMapList

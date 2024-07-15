@@ -2,7 +2,7 @@
   <div>Home Hero Actions After</div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 defineOptions({
   name: 'HomeHeroActionsAfter'
 })

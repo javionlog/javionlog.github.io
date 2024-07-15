@@ -1,5 +1,7 @@
-import { createContentLoader, ContentData } from 'vitepress'
 import { execSync } from 'node:child_process'
+
+import { ContentData, createContentLoader } from 'vitepress'
+
 import { parseTime } from './index'
 import { getPackageJson } from './theme'
 
@@ -20,7 +22,7 @@ const getGitCommitTime = (path: string) => {
   }
 }
 
-let data: ContentReturnData[]
+const data: ContentReturnData[] = []
 
 export { data }
 
@@ -28,18 +30,12 @@ export default createContentLoader('**/*.md', {
   transform(raw: ContentData[]) {
     const { author } = getPackageJson()
     return raw
-      .filter(item => {
-        return item.url.endsWith('.html')
-      })
-      .map(item => {
-        return {
-          ...item,
-          author,
-          lastUpdated: getGitCommitTime(item.url)
-        }
-      })
-      .sort((a, b) => {
-        return +new Date(b.lastUpdated) - +new Date(a.lastUpdated)
-      })
+      .filter(item => item.url.endsWith('.html'))
+      .map(item => ({
+        ...item,
+        author,
+        lastUpdated: getGitCommitTime(item.url)
+      }))
+      .sort((a, b) => Number(new Date(b.lastUpdated)) - Number(new Date(a.lastUpdated)))
   }
 })

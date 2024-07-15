@@ -2,7 +2,7 @@
   <div>Home Features After</div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 defineOptions({
   name: 'HomeFeaturesAfter'
 })

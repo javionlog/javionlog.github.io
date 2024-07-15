@@ -2,7 +2,7 @@
   <div>Sidebar Nav Before</div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 defineOptions({
   name: 'SidebarNavBefore'
 })

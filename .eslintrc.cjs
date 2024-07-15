@@ -7,10 +7,10 @@ const config = defineConfig({
     es2023: true,
     node: true
   },
-  plugins: [],
+  plugins: ['simple-import-sort'],
   extends: [
     'eslint:all',
-    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/strict-type-checked',
     'plugin:vue/vue3-recommended',
     '@unocss',
     'prettier'
@@ -20,15 +20,35 @@ const config = defineConfig({
     parser: '@typescript-eslint/parser',
     ecmaVersion: 'latest',
     sourceType: 'module',
+    project: './tsconfig.json',
+    tsconfigRootDir: __dirname,
+    extraFileExtensions: ['.vue'],
     ecmaFeatures: {
       jsx: true
     }
   },
   rules: {
+    // eslint
     yoda: 'off',
-    'sort-keys': 'off',
-    '@typescript-eslint/no-explicit-any': 'warn',
     complexity: ['error', 10],
+    'one-var': 'off',
+    'sort-keys': 'off',
+    'sort-vars': 'off',
+    'sort-imports': 'off',
+    'no-ternary': 'off',
+    'id-length': 'off',
+    'max-lines-per-function': ['error', 100],
+    'max-statements': ['error', 20],
+    'no-magic-numbers': 'off',
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
+
+    // typescript
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-floating-promises': 'off',
+
+    // vue
+    'vue/multi-word-component-names': 'off',
     'vue/block-lang': [
       'error',
       {

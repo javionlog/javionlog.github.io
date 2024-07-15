@@ -1,4 +1,4 @@
-export const commom: Record<string, string> = {
+export const commom: Record<string, string | undefined> = {
   frontend: '前端',
   computer: '计算机',
   algorithm: '算法',
@@ -10,6 +10,6 @@ export const commom: Record<string, string> = {
   'event-loop': '事件循环'
 }
 
-export const nav: Record<string, string> = {
+export const nav: Record<string, string | undefined> = {
   'frontend/javascript/base/inheritance-and-the-prototype-chain': '继承与原形链'
 }

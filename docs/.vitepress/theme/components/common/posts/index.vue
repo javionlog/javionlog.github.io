@@ -1,13 +1,19 @@
 <template>
   <div>
     <div class="grid grid-cols-1 gap-4">
-      <a
+      <div
         v-for="ps in postList"
         :key="ps.url"
-        :href="ps.url"
-        class="grid cursor-pointer gap-3 rounded p-4 shadow hover:shadow-lg dark:shadow-[var(--vp-c-default-1)] dark:hover:shadow-[var(--vp-c-default-1)]"
+        class="grid cursor-pointer gap-3 rounded p-4 shadow dark:shadow-placeholder-1 hover:shadow-lg dark:hover:shadow-placeholder-1"
+        @click="handleGo(ps.url)"
       >
-        <div class="text-lg font-bold">{{ ps.frontmatter.title }}</div>
+        <div>
+          <div class="text-lg font-bold">{{ ps.frontmatter.title }}</div>
+          <div v-if="ps.frontmatter.tags?.length" class="flex items-center">
+            <VpiBookmark class="mr-1 text-[var(--vp-c-text-3)]" />
+            <LinkTag v-for="tag in ps.frontmatter.tags ?? []" :key="tag" :content="tag" />
+          </div>
+        </div>
         <div class="line-clamp-2 text-sm text-[var(--vp-c-text-2)]">
           {{ ps.frontmatter.description }}
         </div>
@@ -16,23 +22,26 @@
           <span>|</span>
           <span>{{ ps.lastUpdated }}</span>
         </div>
-      </a>
+      </div>
     </div>
     <Pagination
       v-model:current="currentPage"
-      :total="posts.length"
+      :total="finalPosts.length"
       :page-size="pageSize"
-      @change="handlePageChange"
       class="mt-6"
+      @change="handlePageChange"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import { useRoute, useRouter } from 'vitepress'
 import { useBrowserLocation, useUrlSearchParams } from '@vueuse/core'
-import { ref, computed, watch } from 'vue'
+import { useRoute, useRouter } from 'vitepress'
+import { computed, ref, watch } from 'vue'
+
+import { getUrlSearchString } from '../../../../utils/index'
 import { data as posts } from '../../../../utils/posts.data'
+import LinkTag from '../link-tag/index.vue'
 import Pagination from '../pagination/index.vue'
 
 defineOptions({
@@ -40,30 +49,46 @@ defineOptions({
 })
 
 const location = useBrowserLocation()
-const searchParams = useUrlSearchParams()
+const searchParams = useUrlSearchParams<{ page?: number; tag?: string }>()
 const route = useRoute()
 const router = useRouter()
 const currentPage = ref(1)
 const pageSize = ref(2)
-const postList = computed(() => {
-  return posts.slice((currentPage.value - 1) * pageSize.value, currentPage.value * pageSize.value)
-})
+const finalPosts = computed(() =>
+  posts.filter(item => {
+    if (typeof searchParams.tag === 'string' && searchParams.tag.trim().length) {
+      const tags = Array.isArray(item.frontmatter.tags) ? item.frontmatter.tags : []
+      return tags.includes(searchParams.tag)
+    }
+    return true
+  })
+)
+const postList = computed(() =>
+  finalPosts.value.slice(
+    (currentPage.value - 1) * pageSize.value,
+    currentPage.value * pageSize.value
+  )
+)
+
+const handleGo = (url: string) => {
+  router.go(url)
+}
 
 const handlePageChange = () => {
-  const toPath = `${location.value.origin}${router.route.path}?page=${currentPage.value}`
-  router.go(toPath)
+  searchParams.page = currentPage.value
+  const searchString = getUrlSearchString(searchParams)
+  if (location.value.origin && location.value.pathname) {
+    const toPath = `${location.value.origin}${location.value.pathname}?${searchString}`
+    router.go(toPath)
+  }
 }
 
 watch(
   route,
   () => {
     const page = Number(searchParams.page)
-    if (Number.isNaN(page)) {
-      currentPage.value = 1
-    } else {
-      if (page > 0) {
-        currentPage.value = page
-      }
+    if (page > 0) {
+      currentPage.value = page
     }
   },
   {

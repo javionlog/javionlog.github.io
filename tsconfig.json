@@ -58,11 +58,18 @@
   },
   // 需要编译的文件
   "include": [
-    "types/*.d.ts",
-    "docs/.vitepress/**/*.ts",
-    "docs/.vitepress/**/*.tsx",
-    "docs/.vitepress/**/*.vue"
+    "./types/*.ts",
+    "./**/*.vue",
+    "./**/*.js",
+    "./**/*.jsx",
+    "./**/*.ts",
+    "./**/*.tsx",
+    "./docs/.vitepress/**/*.vue",
+    "./docs/.vitepress/**/*.js",
+    "./docs/.vitepress/**/*.jsx",
+    "./docs/.vitepress/**/*.ts",
+    "./docs/.vitepress/**/*.tsx"
   ],
   // 不需要编译的文件
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["node_modules", "dist", ".vitepress/cache"]
 }
