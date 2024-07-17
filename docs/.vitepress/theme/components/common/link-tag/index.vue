@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import { useBrowserLocation, useUrlSearchParams } from '@vueuse/core'
+import { urlSearchParams } from '../../../../composable/useUrlSearchParams'
 import { useRouter } from 'vitepress'
 
 import { getUrlSearchString } from '../../../../utils/index'
@@ -21,16 +21,15 @@ defineOptions({
 
 const props = defineProps<Props>()
 
-const location = useBrowserLocation()
-const searchParams = useUrlSearchParams<{ page?: number; tag?: string }>()
 const router = useRouter()
 
 const handleGo = () => {
-  searchParams.page = 1
-  searchParams.tag = props.content
-  const searchString = getUrlSearchString(searchParams)
-  if (location.value.origin && location.value.pathname) {
-    const toPath = `${location.value.origin}${location.value.pathname}?${searchString}`
+  urlSearchParams.value.page = 1
+  urlSearchParams.value.tag = props.content
+  const searchString = getUrlSearchString(urlSearchParams.value)
+  const { location } = globalThis
+  if (location.origin && location.pathname) {
+    const toPath = `${location.origin}${location.pathname}?${searchString}`
     router.go(toPath)
   }
 }

@@ -93,11 +93,13 @@ export const parseTime = (time: Date | string | number, format = '{y}/{m}/{d} {h
 
 export const getUrlSearchObject = () => {
   const result: Record<string, string> = {}
-  const locationSearch = location.search
-  if (typeof locationSearch !== 'string') {
+  const {
+    location: { search }
+  } = globalThis
+  if (typeof search !== 'string') {
     return result
   }
-  const tmpList = locationSearch.slice(1).split('&')
+  const tmpList = search.slice(1).split('&')
   for (const item of tmpList) {
     const itemList = item.split('=')
     const [firstItem, secondItem] = itemList

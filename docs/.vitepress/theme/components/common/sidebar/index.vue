@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import { useBrowserLocation, useUrlSearchParams } from '@vueuse/core'
+import { urlSearchParams } from '../../../../composable/useUrlSearchParams'
 import { useRouter } from 'vitepress'
 import { computed } from 'vue'
 
@@ -37,13 +37,15 @@ defineOptions({
   name: 'Sidebar'
 })
 
-const location = useBrowserLocation()
-const searchParams = useUrlSearchParams<{ page?: number; tag?: string }>()
 const router = useRouter()
 const tagThemes = ['default', 'brand', 'success', 'warning', 'danger']
 const getTagTheme = computed(
   () => (index: number) => tagThemes[index % tagThemes.length] as ThemeColor
 )
+const getTagVariant = computed(
+  () => (tag: string) => (urlSearchParams.value.tag === tag ? 'base' : 'outline')
+)
+
 const getTags = () => {
   const result: string[] = []
   for (const ps of posts) {
@@ -58,20 +60,20 @@ const getTags = () => {
   }
   return result
 }
-const getTagVariant = computed(
-  () => (tag: string) => (searchParams.tag === tag ? 'base' : 'outline')
-)
+
 const tags = getTags()
+
 const handleGo = (tagInfo: TagInfo) => {
-  searchParams.page = 1
+  urlSearchParams.value.page = 1
   if (tagInfo.variant === 'base') {
-    Reflect.deleteProperty(searchParams, 'tag')
+    Reflect.deleteProperty(urlSearchParams.value, 'tag')
   } else {
-    searchParams.tag = tagInfo.content
+    urlSearchParams.value.tag = tagInfo.content
   }
-  const searchString = getUrlSearchString(searchParams)
-  if (location.value.origin && location.value.pathname) {
-    const toPath = `${location.value.origin}${location.value.pathname}?${searchString}`
+  const searchString = getUrlSearchString(urlSearchParams.value)
+  const { location } = globalThis
+  if (location.origin && location.pathname) {
+    const toPath = `${location.origin}${location.pathname}?${searchString}`
     router.go(toPath)
   }
 }
