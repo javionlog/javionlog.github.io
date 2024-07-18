@@ -16,7 +16,7 @@ export default defineConfig({
   shortcuts: [],
   theme: {
     colors: {
-      ...themeColors.reduce((prev, curr) => {
+      ...themeColors.reduce((prev: Record<PropertyKey, string>, curr) => {
         prev[curr] = `var(--vp-c-${curr}-1)`
         return prev
       }, {}),
