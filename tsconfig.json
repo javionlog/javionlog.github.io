@@ -1,5 +1,5 @@
-// https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     // 允许编译 javascript 文件
     "allowJs": true,
