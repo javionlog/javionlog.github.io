@@ -12,7 +12,7 @@
     <div class="mt-2 flex gap-4 text-sm text-[var(--vp-c-text-3)]">
       <div class="flex items-center gap-1">
         <VpiUser />
-        <div>{{ getMetaAuthor(site.head) }}</div>
+        <div>Fourdusk</div>
       </div>
       <div class="flex items-center gap-1">
         <VpiClock />
@@ -35,9 +35,9 @@
 <script setup lang="ts">
 import { useData } from 'vitepress'
 import LinkTag from '../../common/link-tag/index.vue'
-import { parseTime, getMetaAuthor } from '../../../../utils/index'
+import { parseTime } from '../../../../utils/index'
 
-const { site, frontmatter, page } = useData()
+const { frontmatter, page } = useData()
 defineOptions({
   name: 'DocBefore'
 })

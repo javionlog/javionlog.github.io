@@ -7,6 +7,11 @@
   --vp-nav-height: 22px;
 }
 
+/* stylelint-disable-next-line */
+.VPDocFooter .edit-info {
+  display: none !important;
+}
+
 .vp-doc ul,
 .vp-doc ol {
   padding: 0;

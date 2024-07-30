@@ -8,7 +8,6 @@ export default defineConfig({
   title: '四夕的博客',
   titleTemplate: false,
   description: '一个实用的博客',
-  lastUpdated: true,
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
     ['meta', { name: 'author', content: getPackageJson().author }],

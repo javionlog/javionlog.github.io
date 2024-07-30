@@ -9,8 +9,8 @@
       >
         <div>
           <div class="text-lg font-bold">{{ ps.frontmatter.title }}</div>
-          <div v-if="ps.frontmatter.tags?.length" class="flex items-center">
-            <VpiBookmark class="mr-1 text-[var(--vp-c-text-3)]" />
+          <div v-if="ps.frontmatter.tags?.length" class="flex gap-1 items-center">
+            <VpiBookmark class="text-sm text-[var(--vp-c-text-3)]" />
             <LinkTag v-for="tag in ps.frontmatter.tags ?? []" :key="tag" :content="tag" />
           </div>
         </div>

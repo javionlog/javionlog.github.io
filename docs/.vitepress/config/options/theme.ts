@@ -4,7 +4,7 @@ import { getNavData, getSidebarData } from '../../utils/theme'
 
 export default defineConfigWithTheme<DefaultTheme.Config>({
   appearance: true,
-  lastUpdated: false,
+  lastUpdated: true,
   themeConfig: {
     logo: '/logo.png',
     lastUpdated: {
