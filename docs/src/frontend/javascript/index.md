@@ -1,8 +1,5 @@
 ---
 title: Javascript
 description: Javascript
+injectDocBefore: true
 ---
-
-# {{ $frontmatter.title }}
-
-{{ $frontmatter.description }}

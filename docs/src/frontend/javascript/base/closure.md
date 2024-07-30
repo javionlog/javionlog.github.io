@@ -8,8 +8,5 @@ tags:
   - React
   - Vue
   - SolidJS
+injectDocBefore: true
 ---
-
-# {{ $frontmatter.title }}
-
-{{ $frontmatter.description }}

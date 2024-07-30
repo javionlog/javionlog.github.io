@@ -15,7 +15,7 @@ for (const [name, mod] of Object.entries(modules)) {
   compList.push({ name, mod: mod as Component })
 }
 
-const includeSlots: string[] = []
+const includeSlots: string[] = ['doc-before']
 
 const compMapList: CompItem[] = compList
   .map(item => ({

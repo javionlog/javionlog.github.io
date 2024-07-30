@@ -117,3 +117,12 @@ export const getUrlSearchString = (obj: Record<PropertyKey, string | number | un
   Object.keys(obj)
     .map(key => `${key}=${String(obj[key])}`)
     .join('&')
+
+export const getMetaAuthor = (
+  head: Array<[string, Record<string, string>] | [string, Record<string, string>, string]>
+) => {
+  const headItem = head.find(item => {
+    return item[0] === 'meta' && item[1].name === 'author'
+  })
+  return headItem?.[1].content as string | undefined
+}

@@ -10,8 +10,10 @@ declare module 'vue' {
     VpiBookmark: typeof import('~icons/vpi/bookmark')['default']
     VpiChevronLeft: typeof import('~icons/vpi/chevron-left')['default']
     VpiChevronRight: typeof import('~icons/vpi/chevron-right')['default']
+    VpiClock: typeof import('~icons/vpi/clock')['default']
     VpiClose: typeof import('~icons/vpi/close')['default']
     VpiEllipsis: typeof import('~icons/vpi/ellipsis')['default']
     VpiTag: typeof import('~icons/vpi/tag')['default']
+    VpiUser: typeof import('~icons/vpi/user')['default']
   }
 }

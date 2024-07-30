@@ -1,8 +1,5 @@
 ---
 title: CSS
 description: CSS
+injectDocBefore: true
 ---
-
-# {{ $frontmatter.title }}
-
-{{ $frontmatter.description }}

@@ -13,13 +13,16 @@ import { getUrlSearchString } from '../../../../utils/index'
 
 type Props = {
   content: string
+  size?: string
 }
 
 defineOptions({
   name: 'LinkTag'
 })
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  size: '12px'
+})
 
 const router = useRouter()
 
@@ -28,8 +31,8 @@ const handleGo = () => {
   urlSearchParams.value.tag = props.content
   const searchString = getUrlSearchString(urlSearchParams.value)
   const { location } = globalThis
-  if (location.origin && location.pathname) {
-    const toPath = `${location.origin}${location.pathname}?${searchString}`
+  if (location.origin) {
+    const toPath = `${location.origin}/?${searchString}`
     router.go(toPath)
   }
 }
@@ -39,7 +42,7 @@ const handleGo = () => {
 .link-tag {
   display: flex;
   align-items: center;
-  font-size: 12px;
+  font-size: v-bind('props.size');
   color: var(--vp-c-text-3);
 
   &:hover {

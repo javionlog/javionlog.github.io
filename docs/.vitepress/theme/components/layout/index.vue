@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <template v-for="s in slots" :key="s.mod" #[s.name]>
+    <template v-for="s in slots" :key="s.name" #[s.name]>
       <component :is="s.mod" />
     </template>
   </Layout>
