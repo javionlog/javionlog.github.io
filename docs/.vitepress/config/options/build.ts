@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import { getPackageJson } from '../../utils/theme'
 
 export default defineConfig({
   srcDir: 'src',
@@ -6,5 +7,10 @@ export default defineConfig({
   outDir: './.vitepress/dist',
   assetsDir: 'assets',
   cacheDir: './.vitepress/cache',
-  ignoreDeadLinks: false
+  ignoreDeadLinks: false,
+  transformPageData() {
+    return {
+      author: getPackageJson().author
+    }
+  }
 })

@@ -12,7 +12,7 @@
     <div class="mt-2 flex gap-4 text-sm text-[var(--vp-c-text-3)]">
       <div class="flex items-center gap-1">
         <VpiUser />
-        <div>Fourdusk</div>
+        <div>{{ pageData.author }}</div>
       </div>
       <div class="flex items-center gap-1">
         <VpiClock />
@@ -33,11 +33,16 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useData } from 'vitepress'
 import LinkTag from '../../common/link-tag/index.vue'
 import { parseTime } from '../../../../utils/index'
 
 const { frontmatter, page } = useData()
+
+const pageData = computed(() => {
+  return { author: '', ...page.value }
+})
 defineOptions({
   name: 'DocBefore'
 })
