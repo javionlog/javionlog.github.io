@@ -55,7 +55,7 @@ const postList = computed(() => {
   const result = posts.filter(item => {
     if (typeof urlSearchParams.value.tag === 'string' && urlSearchParams.value.tag.trim().length) {
       const tags = Array.isArray(item.frontmatter.tags) ? item.frontmatter.tags : []
-      return tags.includes(urlSearchParams.value.tag)
+      return tags.includes(decodeURIComponent(urlSearchParams.value.tag))
     }
     return true
   })
@@ -73,7 +73,7 @@ const handleGo = (url: string) => {
 }
 
 const handlePageChange = () => {
-  urlSearchParams.value.page = currentPage.value
+  urlSearchParams.value.page = String(currentPage.value)
   const searchString = getUrlSearchString(urlSearchParams.value)
   const { location } = globalThis
   if (location.origin && location.pathname) {

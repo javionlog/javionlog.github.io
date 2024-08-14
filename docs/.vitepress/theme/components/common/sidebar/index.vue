@@ -43,7 +43,8 @@ const getTagTheme = computed(
   () => (index: number) => tagThemes[index % tagThemes.length] as ThemeColor
 )
 const getTagVariant = computed(
-  () => (tag: string) => (urlSearchParams.value.tag === tag ? 'base' : 'outline')
+  () => (tag: string) =>
+    decodeURIComponent(urlSearchParams.value.tag ?? '') === tag ? 'base' : 'outline'
 )
 
 const getTags = () => {
@@ -64,7 +65,7 @@ const getTags = () => {
 const tags = getTags()
 
 const handleGo = (tagInfo: TagInfo) => {
-  urlSearchParams.value.page = 1
+  urlSearchParams.value.page = '1'
   if (tagInfo.variant === 'base') {
     Reflect.deleteProperty(urlSearchParams.value, 'tag')
   } else {

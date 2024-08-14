@@ -7,7 +7,12 @@ export const commom: Record<string, string | undefined> = {
   closure: '闭包',
   base: '基础',
   advance: '进阶',
-  'event-loop': '事件循环'
+  'event-loop': '事件循环',
+  stack: '栈',
+  quence: '队列',
+  'linked-list': '链表',
+  tree: '树',
+  graph: '图'
 }
 
 export const nav: Record<string, string | undefined> = {
