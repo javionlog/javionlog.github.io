@@ -9,7 +9,7 @@ export const commom: Record<string, string | undefined> = {
   advance: '进阶',
   'event-loop': '事件循环',
   stack: '栈',
-  quence: '队列',
+  queue: '队列',
   'linked-list': '链表',
   tree: '树',
   graph: '图'
