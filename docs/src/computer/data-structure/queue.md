@@ -10,7 +10,7 @@ injectDocBefore: true
 
 ```js
 class Queue {
-  contructor() {
+  constructor() {
     this.items = []
   }
 
