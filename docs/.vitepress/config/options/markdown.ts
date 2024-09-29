@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress'
 
 export default defineConfig({
   markdown: {
+    math: true,
     config: md => {
       const defaultRenderer = md.renderer.rules.fence
       if (!defaultRenderer) {

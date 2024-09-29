@@ -39,6 +39,7 @@
     "fast-glob": "^3.3.2",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.7",
+    "markdown-it-mathjax3": "^4.3.2",
     "mermaid": "^10.9.1",
     "pagefind": "^1.1.0",
     "postcss": "^8.4.38",

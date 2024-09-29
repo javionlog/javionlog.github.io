@@ -12,7 +12,8 @@ export const commom: Record<string, string | undefined> = {
   queue: '队列',
   'linked-list': '链表',
   tree: '树',
-  graph: '图'
+  graph: '图',
+  sort: '排序'
 }
 
 export const nav: Record<string, string | undefined> = {
