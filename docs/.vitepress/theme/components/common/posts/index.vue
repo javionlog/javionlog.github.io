@@ -50,7 +50,7 @@ defineOptions({
 
 const router = useRouter()
 const currentPage = ref(1)
-const pageSize = ref(2)
+const pageSize = ref(10)
 const postList = computed(() => {
   const result = posts.filter(item => {
     if (typeof urlSearchParams.value.tag === 'string' && urlSearchParams.value.tag.trim().length) {
