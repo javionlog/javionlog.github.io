@@ -1,6 +1,6 @@
 ---
 title: 排序
-description: 排序算法是计算机科学中的一种基础算法，用于将一组数据按照特定顺序（通常是升序或降序）进行排列。常见的排序算法有：冒泡排序、选择排序、插入排序、归并排序、快速排序等
+description: 排序算法是计算机科学中的一种基础算法，用于将一组数据按照特定顺序（通常是升序或降序）进行排列。常见的排序算法有：冒泡排序、选择排序、插入排序、归并排序、快速排序、堆排序等
 tags:
   - 算法
 injectDocBefore: true
@@ -8,7 +8,7 @@ injectDocBefore: true
 
 ## 冒泡排序
 
-- 原理：通过重复遍历列表，比较相邻元素并交换它们的位置，直到没有需要交换的元素为止
+- 原理：通过重复遍历数组，比较相邻元素并交换它们的位置，直到没有需要交换的元素为止
 - 时间复杂度：
   - 最优 $O(n)$
   - 平均 $O(n^2)$
@@ -170,5 +170,56 @@ const quickSort = (list = []) => {
   }
 
   return [...quickSort(left), pivot, ...quickSort(right)]
+}
+```
+
+## 堆排序
+
+- 原理：堆排序利用堆这种数据结构的特性，将待排序的数组构建成一个最大堆（或最小堆），然后逐步将堆顶元素（最大或最小）移到数组的末尾，最终得到有序数组
+- 时间复杂度：
+  - 最优 $(O(n \log n))$
+  - 平均 $(O(n \log n))$
+  - 最坏 $(O(n \log n))$
+- 空间复杂度：$(O(1))$（原地排序）
+- 优点：时间复杂度稳定，适用于大规模数据，且不需要额外的存储空间
+- 缺点：实现相对复杂
+
+### 实现
+
+```js
+const heapSort = (list = []) => {
+  const len = list.length
+
+  // 构建最大堆
+  const buildMaxHeap = (arr, length, root) => {
+    let largest = root
+    const left = 2 * root + 1
+    const right = 2 * root + 2
+
+    if (left < length && arr[left] > arr[largest]) {
+      largest = left
+    }
+
+    if (right < length && arr[right] > arr[largest]) {
+      largest = right
+    }
+
+    if (largest !== root) {
+      ;[arr[root], arr[largest]] = [arr[largest], arr[root]] // 交换
+      buildMaxHeap(arr, length, largest)
+    }
+  }
+
+  // 主函数
+  for (let i = Math.floor(len / 2) - 1; i >= 0; i--) {
+    buildMaxHeap(list, len, i)
+  }
+
+  for (let i = len - 1; i > 0; i--) {
+    ;[list[0], list[i]] = [list[i], list[0]] // 交换堆顶和当前最后元素
+    buildMaxHeap(list, i, 0)
+  }
+
+  return list
 }
 ```

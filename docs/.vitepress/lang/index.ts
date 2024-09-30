@@ -13,7 +13,8 @@ export const commom: Record<string, string | undefined> = {
   'linked-list': '链表',
   tree: '树',
   graph: '图',
-  sort: '排序'
+  sort: '排序',
+  search: '搜索'
 }
 
 export const nav: Record<string, string | undefined> = {
