@@ -14,9 +14,11 @@ export const commom: Record<string, string | undefined> = {
   tree: '树',
   graph: '图',
   sort: '排序',
-  search: '搜索'
+  search: '搜索',
+  interview: '面试'
 }
 
 export const nav: Record<string, string | undefined> = {
-  'frontend/javascript/base/inheritance-and-the-prototype-chain': '继承与原形链'
+  'frontend/javascript/base/inheritance-and-the-prototype-chain': '继承与原形链',
+  'frontend/javascript/interview/concurrency-control': '并发控制'
 }
