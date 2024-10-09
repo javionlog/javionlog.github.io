@@ -20,5 +20,7 @@ export const commom: Record<string, string | undefined> = {
 
 export const nav: Record<string, string | undefined> = {
   'frontend/javascript/base/inheritance-and-the-prototype-chain': '继承与原形链',
-  'frontend/javascript/interview/concurrency-control': '并发控制'
+  'frontend/javascript/interview/concurrency-control': '并发控制',
+  'computer/algorithm/divide-and-conquer': '分而治之',
+  'computer/algorithm/dynamic-programming': '动态规划'
 }
