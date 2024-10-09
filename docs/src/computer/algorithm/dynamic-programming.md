@@ -15,7 +15,7 @@ injectDocBefore: true
 ### 实现
 
 ```js
-function fibonacci(n) {
+const fibonacci = n => {
   // 初始化动态规划数组，dp[i] 表示斐波那契数列的第 i 项
   const dp = [0, 1]
 
@@ -41,7 +41,7 @@ function fibonacci(n) {
 ### 实现
 
 ```js
-function longestCommonSubsequence(text1, text2) {
+const longestCommonSubsequence = (text1, text2) => {
   const m = text1.length
   const n = text2.length
   // 初始化动态规划二维数组，dp[i][j] 表示 text1 前 i 个字符和 text2 前 j 个字符的最长公共子序列长度
@@ -73,7 +73,7 @@ function longestCommonSubsequence(text1, text2) {
 ### 实现
 
 ```js
-function longestIncreasingSubsequence(nums) {
+const longestIncreasingSubsequence = nums => {
   if (nums.length === 0) {
     return 0
   }
@@ -116,7 +116,7 @@ function longestIncreasingSubsequence(nums) {
 ### 实现 1（动态规划）
 
 ```js
-function climbStairs(n) {
+const climbStairs = n => {
   // 如果只有一阶台阶，只有一种方式
   if (n === 1) {
     return 1
@@ -148,7 +148,7 @@ function climbStairs(n) {
 ### 实现 2（迭代）
 
 ```js
-function climbStairs(n) {
+const climbStairs = n => {
   // 如果只有一阶台阶，只有一种方式
   if (n === 1) {
     return 1
@@ -181,7 +181,7 @@ function climbStairs(n) {
 ### 实现 1（二维数组）
 
 ```js
-function knapsack(weights, values, capacity) {
+const knapsack = (weights, values, capacity) => {
   const n = weights.length
   // 初始化动态规划二维数组，dp[i][w] 表示前 i 个物品在容量为 w 时的最大价值
   const dp = Array.from({ length: n + 1 }, () => Array.from({ length: capacity + 1 }).fill(0))
@@ -207,7 +207,7 @@ function knapsack(weights, values, capacity) {
 ### 实现 2（一维数组）
 
 ```js
-function knapsack(weights, values, capacity) {
+const knapsack = (weights, values, capacity) => {
   const n = weights.length
   // 初始化 dp 数组
   const dp = Array.from({ length: capacity + 1 }).fill(0)
@@ -216,11 +216,62 @@ function knapsack(weights, values, capacity) {
   for (let i = 0; i < n; i++) {
     // 从后往前遍历背包容量
     for (let j = capacity; j >= weights[i]; j--) {
+      // 选和不选物品 i 这两种方案的较大值
       dp[j] = Math.max(dp[j], dp[j - weights[i]] + values[i])
     }
   }
 
   // 返回最大价值
+  return dp[capacity]
+}
+```
+
+## 完全背包
+
+- 有 n 个物品和一个容量为 W 的背包，每个物品有重量 w 和价值 v 两种属性，要求选若干物品放入背包（可以重复选择物品）使背包中物品的总价值最大且背包中物品的总重量不超过背包的容量。
+
+### 实现 1（二维数组）
+
+```js
+function knapsackComplete(weights, values, capacity) {
+  const n = weights.length
+  // 初始化动态规划二维数组，dp[i][w] 表示前 i 个物品在容量为 w 时的最大价值
+  const dp = Array.from({ length: n + 1 }, () => Array.from({ length: capacity + 1 }).fill(0))
+
+  // 遍历物品和容量
+  for (let i = 1; i <= n; i++) {
+    for (let w = 1; w <= capacity; w++) {
+      if (weights[i - 1] <= w) {
+        // 如果当前物品重量小于等于背包容量，则考虑放入当前物品
+        dp[i][w] = Math.max(dp[i - 1][w], dp[i][w - weights[i - 1]] + values[i - 1])
+      } else {
+        // 否则，不放入当前物品
+        dp[i][w] = dp[i - 1][w]
+      }
+    }
+  }
+  return dp[n][capacity]
+}
+```
+
+### 实现 2（一维数组）
+
+```js
+function knapsackComplete(weights, values, capacity) {
+  const n = weights.length
+  // 初始化 dp 数组
+  const dp = Array.from({ length: capacity + 1 }).fill(0)
+
+  // 遍历每个物品
+  for (let i = 1; i <= n; i++) {
+    // 从后往前遍历背包容量
+    for (let j = capacity; j >= 1; j--) {
+      if (weights[i - 1] <= j) {
+        // 选和不选物品 i 这两种方案的较大值
+        dp[j] = Math.max(dp[j], dp[j - weights[i - 1]] + values[i - 1])
+      }
+    }
+  }
   return dp[capacity]
 }
 ```

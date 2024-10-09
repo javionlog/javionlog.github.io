@@ -15,7 +15,9 @@ export const commom: Record<string, string | undefined> = {
   graph: '图',
   sort: '排序',
   search: '搜索',
-  interview: '面试'
+  interview: '面试',
+  greedy: '贪心',
+  backtracking: '回溯'
 }
 
 export const nav: Record<string, string | undefined> = {
