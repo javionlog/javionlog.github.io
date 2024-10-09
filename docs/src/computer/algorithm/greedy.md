@@ -40,7 +40,7 @@ const coinChange = (coins, amount) => {
 ### 实现 2（动态规划）
 
 ```js
-function coinChange(coins, amount) {
+const coinChange = (coins, amount) => {
   // 初始化 dp 数组，长度为 amount + 1，初始值为 Infinity
   let dp = Array.from({ length: amount + 1 }).fill(Infinity)
   // 金额为 0 时，所需硬币数为 0
@@ -71,7 +71,7 @@ function coinChange(coins, amount) {
 ### 实现
 
 ```js
-function intervalScheduling(intervals) {
+const intervalScheduling = intervals => {
   // 按照结束时间从小到大排序
   intervals.sort((a, b) => a[1] - b[1])
   // 选择的区间数量
@@ -120,7 +120,7 @@ const maxProfit = prices => {
 ### 实现
 
 ```js
-function fractionalKnapsack(weights, values, capacity) {
+const fractionalKnapsack = (weights, values, capacity) => {
   // 计算物品的数量
   const n = weights.length
 
@@ -174,7 +174,7 @@ class Node {
   }
 }
 
-function buildHuffmanTree(charFreq) {
+const buildHuffmanTree = charFreq => {
   const nodes = Object.entries(charFreq).map(([char, freq]) => new Node(char, freq))
   while (nodes.length > 1) {
     // 按频率从小到大排序
@@ -202,7 +202,7 @@ function buildHuffmanTree(charFreq) {
 ### 实现
 
 ```js
-function prim(graph) {
+const prim = graph => {
   // 记录已访问的节点
   const visited = new Set()
   // 存储边

@@ -233,7 +233,7 @@ const knapsack = (weights, values, capacity) => {
 ### 实现 1（二维数组）
 
 ```js
-function knapsackComplete(weights, values, capacity) {
+const knapsackComplete = (weights, values, capacity) => {
   const n = weights.length
   // 初始化动态规划二维数组，dp[i][w] 表示前 i 个物品在容量为 w 时的最大价值
   const dp = Array.from({ length: n + 1 }, () => Array.from({ length: capacity + 1 }).fill(0))
@@ -257,7 +257,7 @@ function knapsackComplete(weights, values, capacity) {
 ### 实现 2（一维数组）
 
 ```js
-function knapsackComplete(weights, values, capacity) {
+const knapsackComplete = (weights, values, capacity) => {
   const n = weights.length
   // 初始化 dp 数组
   const dp = Array.from({ length: capacity + 1 }).fill(0)
