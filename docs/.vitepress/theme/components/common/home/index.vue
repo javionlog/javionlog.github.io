@@ -15,9 +15,18 @@ defineOptions({
 </script>
 
 <style lang="scss" scoped>
-.home-layout {
-  display: grid;
-  grid-template-columns: 3fr minmax(200px, 1fr);
-  grid-gap: 24px;
+@media (width >= 768px) {
+  .home-layout {
+    display: grid;
+    grid-template-columns: 3fr minmax(200px, 1fr);
+    grid-gap: 24px;
+  }
+}
+
+@media (width < 768px) {
+  .home-layout {
+    display: grid;
+    grid-gap: 24px;
+  }
 }
 </style>
