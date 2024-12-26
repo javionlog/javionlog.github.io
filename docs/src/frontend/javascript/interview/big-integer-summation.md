@@ -11,7 +11,7 @@ injectDocBefore: true
 ## 要求
 
 ```js
-function sumBigInteger(num1, num2) {}
+const sumBigInteger = (num1, num2) => {}
 
 sumBigInteger('123', '456') // "579"
 sumBigInteger('123', '-456') // "-333"
@@ -22,19 +22,19 @@ sumBigInteger('-123', '-456') // "-579"
 ## 实现
 
 ```js
-function sumBigInteger(num1, num2) {
+const sumBigInteger = (num1, num2) => {
   // 辅助函数：判断数字是正数还是负数
-  function isNegative(num) {
+  const isNegative = num => {
     return num[0] === '-'
   }
 
   // 辅助函数：去掉前面零
-  function removeLeadingZeros(num) {
+  const removeLeadingZeros = num => {
     return num.replace(/^0+/, '') || '0'
   }
 
   // 辅助函数：执行加法
-  function sumPositive(num1, num2) {
+  const sumPositive = (num1, num2) => {
     let result = ''
     let carry = 0
     const maxLen = num1.length > num2.length ? num1.length : num2.length
@@ -56,7 +56,7 @@ function sumBigInteger(num1, num2) {
   }
 
   // 辅助函数：执行减法
-  function subtractPositive(num1, num2) {
+  const subtractPositive = (num1, num2) => {
     // 确保 num1 是较大的数
     if (Number(num1) < Number(num2)) {
       return `-${subtractPositive(num2, num1)}`
