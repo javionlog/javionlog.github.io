@@ -26,6 +26,7 @@ export const nav: Record<string, string | undefined> = {
   'frontend/javascript/interview/big-integer-summation': '大整数求和',
   'frontend/javascript/interview/function-debounce': '函数防抖',
   'frontend/javascript/interview/function-throttle': '函数节流',
+  'frontend/javascript/interview/custom-call-apply-bind': '手写 call、apply、bind',
   'computer/algorithm/divide-and-conquer': '分而治之',
   'computer/algorithm/dynamic-programming': '动态规划'
 }
