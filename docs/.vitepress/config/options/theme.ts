@@ -36,11 +36,11 @@ export default defineConfigWithTheme<DefaultTheme.Config>({
       next: '下一篇'
     },
     footer: {
-      message: '@2024 by Fourdusk',
+      message: '@2024 by Javion Log',
       copyright: 'Power by vitepress'
     },
     nav: getNavData(),
     sidebar: getSidebarData(),
-    socialLinks: [{ icon: 'github', link: 'https://github.com/fourdusk/fourdusk.github.io' }]
+    socialLinks: [{ icon: 'github', link: 'https://github.com/javionlog/javionlog.github.io' }]
   }
 })

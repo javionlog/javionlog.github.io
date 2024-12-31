@@ -21,7 +21,7 @@ console.log(Object.getPrototypeOf(dog) === Animal.prototype) // true
 console.log(dog.constructor === Animal) // true
 ```
 
-![Prototype Chain](./prototype-chain.jpg)
+![Prototype Chain](/prototype-chain.jpg)
 
 ## new 操作符做了哪些事
 

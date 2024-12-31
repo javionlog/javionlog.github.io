@@ -75,8 +75,11 @@ export const getNavData = (maxLevel = 2) => {
     const text = last.replace('.md', '')
     const finalText = nav[fileName.replace('.md', '')] ?? commom[text]
     const item: NavItem = {
-      id: last,
-      parentId: splitList.length === 1 ? null : splitList[splitList.length - 2],
+      id: splitList.join('_'),
+      parentId:
+        splitList.length === 1
+          ? null
+          : splitList.filter((_, i) => i < splitList.length - 1).join('_'),
       level: splitList.length,
       link: `/${fileName}`,
       activeMatch: `/${fileName}`,
