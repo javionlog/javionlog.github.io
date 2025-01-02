@@ -2,7 +2,8 @@
 title: 浏览器工作原理
 description: 浏览器的基本工作流程：1、用户输入 URL：用户在地址栏输入网址，浏览器开始导航过程。2、DNS 解析：浏览器向 DNS 服务器请求域名解析，获取对应的 IP 地址。3、建立 TCP 连接：通过 TCP 的三次握手与服务器建立连接。4、发送 HTTP 请求：浏览器发送 HTTP（如果是 HTTPS 还需要 TLS 协商，决定使用哪种密码对通信进行加密，再往返服务器 5 次） 请求，通常是 GET 请求，获取网页的 HTML 文件。4、接收 HTTP 响应：服务器返回 HTML 文件及相关资源（如 CSS、JavaScript、图片等）。5、解析和渲染：浏览器解析 HTML，构建 DOM 树，解析 CSS，构建 CSSOM 树，最终将 DOM 和 CSSOM 合并为渲染树，进行布局和绘制。6、显示内容：将渲染结果显示在用户的屏幕上。
 tags:
-  - JavaScript
+  - HTML
+  - 浏览器
 injectDocBefore: true
 ---
 
