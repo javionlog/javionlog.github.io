@@ -4,7 +4,6 @@ description: 手写 call、apply、bind
 tags:
   - JavaScript
   - 面试
-  - 并发
 injectDocBefore: true
 ---
 

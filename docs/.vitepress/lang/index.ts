@@ -21,6 +21,7 @@ export const commom: Record<string, string | undefined> = {
 }
 
 export const nav: Record<string, string | undefined> = {
+  'frontend/css/base/containing-block': '包含块',
   'frontend/css/base/block-formatting-context': '块级格式化上下文',
   'frontend/css/base/box-model': '盒模型',
   'frontend/html/advance/how-browser-work': '浏览器工作原理',

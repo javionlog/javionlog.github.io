@@ -4,7 +4,6 @@ description: 函数节流是指当一个事件被触发时，节流函数会立�
 tags:
   - JavaScript
   - 面试
-  - 并发
 injectDocBefore: true
 ---
 

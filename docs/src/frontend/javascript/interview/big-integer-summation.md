@@ -4,7 +4,6 @@ description: 请实现一个对 2 个整数求和的函数，支持 2 个整数�
 tags:
   - JavaScript
   - 面试
-  - 并发
 injectDocBefore: true
 ---
 

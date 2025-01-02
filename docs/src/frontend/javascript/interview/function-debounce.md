@@ -4,7 +4,6 @@ description: 函数防抖是指当一个事件被触发时，防抖函数会延�
 tags:
   - JavaScript
   - 面试
-  - 并发
 injectDocBefore: true
 ---
 

@@ -4,7 +4,6 @@ description: 假设有这么一个场景：现在有 30 个异步请求需要发
 tags:
   - JavaScript
   - 面试
-  - 并发
 injectDocBefore: true
 ---
 
