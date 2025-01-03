@@ -1,6 +1,6 @@
 ---
 title: 块级格式化上下文
-description: BFC（Block Formatting Context，块级格式化上下文）是CSS 中的一个重要概念，它决定了元素如何布局以及如何与其他元素进行交互。BFC 是一个独立的渲染区域，内部的元素布局不会影响到外部元素，同时外部元素也不会影响到内部的布局。
+description: BFC（Block Formatting Context，块级格式化上下文）是 CSS 中的一个重要概念，它决定了元素如何布局以及如何与其他元素进行交互。BFC 是一个独立的渲染区域，内部的元素布局不会影响到外部元素，同时外部元素也不会影响到内部的布局。
 tags:
   - CSS
 injectDocBefore: true
