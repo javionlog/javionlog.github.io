@@ -33,6 +33,7 @@ export const nav: Record<string, string | undefined> = {
   'frontend/javascript/interview/function-debounce': '函数防抖',
   'frontend/javascript/interview/function-throttle': '函数节流',
   'frontend/javascript/interview/request-response-sequence': '请求和响应的顺序一致性',
+  'frontend/javascript/interview/dual-token-refresh-without-sense': '双 Token 无感刷新',
   'frontend/javascript/interview/custom-call-apply-bind': '手写 call、apply、bind',
   'computer/algorithm/divide-and-conquer': '分而治之',
   'computer/algorithm/dynamic-programming': '动态规划'

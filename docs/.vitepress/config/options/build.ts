@@ -10,7 +10,7 @@ export default defineConfig({
   ignoreDeadLinks: false,
   transformPageData() {
     return {
-      author: getPackageJson().author
+      author: getPackageJson().author.name
     }
   }
 })

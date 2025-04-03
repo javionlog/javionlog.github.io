@@ -10,7 +10,7 @@ export default defineConfig({
   description: '一个实用的博客',
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
-    ['meta', { name: 'author', content: getPackageJson().author }],
+    ['meta', { name: 'author', content: getPackageJson().author.name }],
     ['meta', { name: 'keywords', content: '前端,后端,全栈,程序员,实用,博客' }]
   ]
 })
