@@ -18,7 +18,7 @@
           {{ ps.frontmatter.description }}
         </div>
         <div class="flex gap-1 text-xs text-[var(--vp-c-text-3)]">
-          <span>{{ ps.author }}</span>
+          <span>{{ ps.author.name }}</span>
           <span>|</span>
           <span>{{ ps.lastUpdated }}</span>
         </div>

@@ -16,7 +16,10 @@ type NavItem = DefaultTheme.NavItem & {
 }
 
 type PackageJson = {
-  author: string
+  author: {
+    name: string
+    url: string
+  }
 }
 
 /**
